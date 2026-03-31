@@ -1,0 +1,1968 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ERW-5 분석지 | 에듀케레 영수학원</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#1a2744;--navy2:#243260;--gold:#c8a84b;--cream:#faf8f3;--green:#2d6a4f;--greenl:#d8f3dc;--red:#c0392b;--redl:#fdecea;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Noto Sans KR',sans-serif;background:#eef0f5;color:#222;min-height:100vh;}
+.topbar{background:var(--navy);color:#fff;padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:52px;position:fixed;top:0;left:0;right:0;z-index:1000;box-shadow:0 2px 10px rgba(0,0,0,.3);}
+.topbar .brand{font-family:'Playfair Display',serif;font-size:1rem;color:var(--gold);}
+.topbar .brand small{color:rgba(255,255,255,.55);font-size:.72rem;font-family:'Noto Sans KR',sans-serif;margin-left:8px;}
+.topbar .badge{background:var(--gold);color:var(--navy);font-weight:700;font-size:.8rem;padding:3px 12px;border-radius:20px;}
+.sidebar{position:fixed;top:52px;left:0;bottom:0;width:185px;background:var(--navy2);overflow-y:auto;z-index:900;padding:14px 0 20px;}
+.sb-title{color:var(--gold);font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:0 14px 8px;border-bottom:1px solid rgba(200,168,75,.2);margin-bottom:6px;}
+.sb-btn{display:block;width:100%;text-align:left;background:none;border:none;border-left:3px solid transparent;color:rgba(255,255,255,.72);font-family:'Noto Sans KR',sans-serif;font-size:.73rem;padding:9px 14px;cursor:pointer;line-height:1.4;transition:all .18s;}
+.sb-btn:hover{background:rgba(255,255,255,.07);color:#fff;}
+.sb-btn.active{background:rgba(200,168,75,.15);color:var(--gold);border-left-color:var(--gold);font-weight:700;}
+.main{margin-left:185px;margin-top:52px;padding:22px 24px 60px;}
+.panel{display:none;} .panel.active{display:block;}
+.tab-bar{display:flex;background:var(--navy2);overflow-x:auto;scrollbar-width:none;}
+.tab-bar::-webkit-scrollbar{display:none;}
+.tab-btn{flex-shrink:0;background:none;border:none;border-bottom:2px solid transparent;color:rgba(255,255,255,.6);font-family:'Noto Sans KR',sans-serif;font-size:.74rem;font-weight:500;padding:10px 14px;cursor:pointer;white-space:nowrap;transition:all .18s;}
+.tab-btn:hover{color:#fff;}
+.tab-btn.active{color:var(--gold);border-bottom-color:var(--gold);background:rgba(200,168,75,.08);}
+.pane{display:none;background:#fff;border-radius:0 0 10px 10px;padding:24px 26px;box-shadow:0 2px 12px rgba(0,0,0,.07);}
+.pane.active{display:block;}
+.sec-title{font-family:'Playfair Display',serif;font-size:1.05rem;color:var(--navy);border-left:4px solid var(--gold);padding-left:10px;margin-bottom:18px;}
+.sec-badge{display:inline-block;background:var(--navy);color:var(--gold);font-size:.65rem;font-weight:700;padding:2px 10px;border-radius:12px;margin-bottom:10px;letter-spacing:.06em;}
+.full-box{font-family:'EB Garamond',serif;font-size:16px;line-height:1.9;background:#fafafa;border:1px solid #ddd;border-left:4px solid var(--navy);border-radius:6px;padding:18px 20px;margin-bottom:18px;color:#1a1a1a;}
+.full-box .pt{font-family:'Noto Sans KR',sans-serif;font-size:.72rem;font-weight:700;color:var(--gold);letter-spacing:.08em;margin-bottom:8px;}
+.g-group{font-family:'Noto Sans KR',sans-serif;font-size:.8rem;font-weight:700;color:var(--navy);background:#eef2fb;border-left:3px solid var(--gold);padding:6px 12px;border-radius:0 6px 6px 0;margin:20px 0 14px;}
+.s-block{margin-bottom:26px;}
+.s-num{display:inline-block;background:var(--navy);color:var(--gold);font-weight:700;font-size:.78rem;padding:1px 9px;border-radius:12px;margin-bottom:7px;}
+.eng-box{font-family:'EB Garamond',serif;font-size:15px;line-height:1.8;background:#fafafa;border:1px solid #ccc;border-left:4px solid #2E75B6;border-radius:5px;padding:12px 16px;margin-bottom:8px;}
+.slash-eng{font-family:'EB Garamond',serif;font-size:13.5px;color:#444;margin-bottom:3px;}
+.slash-kor{font-size:.82rem;color:#555;margin-bottom:8px;}
+.g-name{display:inline-block;background:#FFF2CC;color:#7F6000;font-weight:700;font-size:.75rem;padding:1px 8px;border-radius:10px;margin:4px 0 2px;}
+.g-ex{font-family:'EB Garamond',serif;font-size:13.5px;color:#333;margin:2px 0 2px 8px;}
+.g-pt{font-size:.75rem;color:#1F4E79;margin:2px 0 6px 8px;}
+.vocab-item{display:flex;align-items:baseline;gap:10px;padding:7px 0;border-bottom:1px solid #f0f0f0;flex-wrap:wrap;}
+.v-word{font-family:'EB Garamond',serif;font-size:15px;font-weight:700;color:var(--navy);min-width:130px;}
+.v-pos{font-size:.72rem;color:#888;font-style:italic;min-width:38px;}
+.v-mean{font-size:.85rem;color:#333;min-width:100px;}
+.v-deriv{font-size:.78rem;color:#2E75B6;}
+.trans-box{font-size:.92rem;line-height:2.1;color:#333;background:#fafafa;border-radius:8px;padding:18px 20px;}
+.topic-card{background:#f8f9ff;border:1px solid #dde4f5;border-radius:8px;padding:14px 18px;margin-bottom:12px;}
+.topic-label{font-weight:700;font-size:.74rem;color:var(--navy);margin-bottom:6px;text-transform:uppercase;letter-spacing:.06em;}
+.topic-content{font-size:.88rem;color:#333;line-height:1.75;}
+.flow-step{display:flex;gap:8px;align-items:flex-start;margin:5px 0;font-size:.85rem;}
+.flow-arrow{color:var(--gold);font-weight:700;flex-shrink:0;}
+.quiz-block{background:#f9fbff;border:1px solid #dde4f5;border-radius:10px;padding:18px 20px;margin-bottom:20px;}
+.q-num{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;background:var(--navy);color:var(--gold);font-weight:700;font-size:.78rem;border-radius:50%;margin-right:6px;flex-shrink:0;vertical-align:middle;}
+.q-txt{font-size:.88rem;font-weight:700;color:var(--navy);margin-bottom:14px;line-height:1.5;}
+.q-passage{font-family:'EB Garamond',serif;font-size:14.5px;line-height:1.85;background:#fff;border:1px solid #ddd;border-radius:6px;padding:12px 14px;margin:10px 0 14px;}
+.opts{display:flex;flex-direction:column;gap:7px;}
+.opt{background:#fff;border:1.5px solid #ccc;border-radius:8px;padding:9px 14px;font-size:.84rem;cursor:pointer;text-align:left;transition:all .15s;font-family:'Noto Sans KR',sans-serif;width:100%;}
+.opt:hover:not(:disabled){border-color:var(--navy);background:#f0f4ff;}
+.opt.correct{background:var(--greenl);border-color:var(--green);color:var(--green);font-weight:700;}
+.opt.wrong{background:var(--redl);border-color:var(--red);color:var(--red);}
+.opt:disabled{cursor:default;}
+.fb{display:none;background:#fffbe6;border:1px solid #f5d76e;border-radius:7px;padding:10px 14px;font-size:.8rem;color:#555;margin-top:10px;line-height:1.6;}
+.fb.show{display:block;}
+.reset-btn{margin-top:10px;background:none;border:1px solid #aaa;border-radius:6px;padding:5px 14px;font-size:.75rem;cursor:pointer;color:#666;}
+.reset-btn:hover{background:#f0f0f0;}
+.written-block{background:#f9fbff;border:1px solid #dde4f5;border-radius:10px;padding:18px 20px;margin-bottom:18px;}
+.w-q{font-size:.88rem;font-weight:700;color:var(--navy);margin-bottom:8px;}
+.w-cond{font-size:.78rem;color:#888;margin-bottom:10px;}
+.w-input{width:100%;min-height:70px;border:1px solid #ccc;border-radius:6px;padding:10px;font-family:'Noto Sans KR',sans-serif;font-size:.85rem;resize:vertical;}
+.ans-btn{margin-top:10px;background:var(--navy);color:var(--gold);border:none;border-radius:6px;padding:7px 16px;font-size:.8rem;cursor:pointer;}
+.model-ans{display:none;background:#E2EFDA;border:1px solid #375623;border-radius:6px;padding:10px 14px;font-size:.83rem;color:#375623;margin-top:8px;line-height:1.7;}
+.model-ans.show{display:block;}
+.footer{text-align:center;color:#aaa;font-size:.72rem;margin-top:40px;padding-bottom:20px;}
+@media(max-width:768px){.sidebar{width:148px;}.main{margin-left:148px;padding:14px 12px 40px;}}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div class="brand">에듀케레 영수학원 <small>English Reading Workshop</small></div>
+  <div class="badge">ERW-5</div>
+</div>
+<div class="sidebar">
+  <div class="sb-title">지문 선택</div>
+  <button class="sb-btn active" id="sb-p1" onclick="showPanel('p1',this)">1-1 Life with AI</button>
+  <button class="sb-btn" id="sb-p2" onclick="showPanel('p2',this)">1-2 Self-driving Cars</button>
+  <button class="sb-btn" id="sb-p3" onclick="showPanel('p3',this)">1-3 Emotional Robot</button>
+  <button class="sb-btn" id="sb-p4" onclick="showPanel('p4',this)">1-4 AARON AI Artist</button>
+  <button class="sb-btn" id="sb-p5" onclick="showPanel('p5',this)">1-5 AI Ethics &amp; Future</button>
+  <button class="sb-btn" id="sb-p7" onclick="showPanel('p7',this)">2-1 Futurist (전반)</button>
+  <button class="sb-btn" id="sb-p6" onclick="showPanel('p6',this)">2-2/2-3 Futurist (후반)</button>
+</div>
+<div class="main">
+
+<!-- ===== PANEL p1: 1-1 Life with AI (도입) ===== -->
+<div class="panel active" id="p1">
+<div class="tab-bar">
+  <button class="tab-btn active" id="p1-tb1" onclick="showTab('p1','pane1',this)">① 전문</button>
+  <button class="tab-btn" id="p1-tb2" onclick="showTab('p1','pane2',this)">② 문장분석</button>
+  <button class="tab-btn" id="p1-tb3" onclick="showTab('p1','pane3',this)">③ 핵심단어</button>
+  <button class="tab-btn" id="p1-tb4" onclick="showTab('p1','pane4',this)">④ 전문해석</button>
+  <button class="tab-btn" id="p1-tb5" onclick="showTab('p1','pane5',this)">⑤ 주제·요지</button>
+  <button class="tab-btn" id="p1-tb6" onclick="showTab('p1','pane6',this)">⑥ 변형문제</button>
+</div>
+
+<!-- 전문 -->
+<div class="pane active" id="p1-pane1">
+  <div class="sec-badge">에듀케레 영수학원 · ERW-5</div>
+  <div class="sec-title">1-1 &nbsp; Life with Artificial Intelligence</div>
+  <div class="full-box">
+    "Hurry up!" Charlie's dad shouts from the front door. Today, Charlie is going on a school field trip to the museum. He woke up late and missed the school bus, so his dad is going to take him there. As soon as they hurry into their self-driving car, Charlie's dad activates the car by asking it to take them to the museum. When Charlie arrives, his classmates and a robot guide are waiting for him. The robot guide reads Charlie's face and notices that he feels sorry for not arriving on time. It tells him, "It's all right. You are not too late." Then, the robot guide starts to introduce the paintings hanging on the wall. Some are painted by humans, and others are painted by robots. However, Charlie cannot confidently distinguish the pictures painted by robots from those painted by humans.<br><br>
+    Do you think this could happen in the distant future? Believe it or not, some of these things are happening right now thanks to artificial intelligence (AI)—technology that enables machines to perform tasks that normally require human intelligence. Machines with AI can recognize speech, translate languages, and make decisions much like humans do. Here are three examples of how AI is already changing our lives.
+  </div>
+</div>
+
+<!-- 문장분석 -->
+<div class="pane" id="p1-pane2">
+  <div class="sec-badge">에듀케레 영수학원 · ERW-5</div>
+  <div class="sec-title">② 문장분석</div>
+
+  <div class="s-block">
+    <div class="s-num">①</div>
+    <div class="eng-box">"Hurry up!" Charlie's dad shouts from the front door.</div>
+    <div class="slash-eng">① "Hurry up!" / Charlie's dad shouts / from the front door.</div>
+    <div class="slash-kor">"서둘러!" / Charlie의 아버지가 소리친다 / 현관문에서.</div>
+    <div class="g-name">◆ 명령문 (Hurry up!)</div>
+    <div class="g-ex">▶ 주어 없이 동사원형으로 시작 — 명령·요청 표현</div>
+    <div class="g-pt">★ 명령문: V + (목적어/부사); 부정 명령문은 Don't + V</div>
+  </div>
+
+  <div class="s-block">
+    <div class="s-num">②</div>
+    <div class="eng-box">Today, Charlie is going on a school field trip to the museum.</div>
+    <div class="slash-eng">② Today, / Charlie is going on / a school field trip / to the museum.</div>
+    <div class="slash-kor">오늘, / Charlie는 가는 중이다 / 학교 현장 체험학습을 / 박물관으로.</div>
+    <div class="g-name">◆ 현재진행형 (is going on)</div>
+    <div class="g-ex">▶ is going on — 현재 진행 중이거나 가까운 미래 계획을 나타냄</div>
+    <div class="g-pt">★ be + V-ing: 현재 진행 / 확정된 미래 계획; today, tomorrow 등과 자주 공존</div>
+  </div>
+
+  <div class="s-block">
+    <div class="s-num">③</div>
+    <div class="eng-box">He woke up late and missed the school bus, so his dad is going to take him there.</div>
+    <div class="slash-eng">③ He woke up late / and missed the school bus, / so his dad is going to take him there.</div>
+    <div class="slash-kor">그는 늦게 일어났고 / 스쿨버스를 놓쳤다, / 그래서 아버지가 그를 데려다 줄 것이다.</div>
+    <div class="g-name">◆ be going to (가까운 미래 의도)</div>
+    <div class="g-ex">▶ is going to take — 이미 결정된 계획·의도 표현</div>
+    <div class="g-pt">★ be going to vs will: 계획된 의도(be going to) / 즉흥적 결정(will) 차이</div>
+    <div class="g-name">◆ 등위접속사 and / so (원인-결과)</div>
+    <div class="g-ex">▶ woke up … and missed … so … — 원인과 결과를 순차적으로 연결</div>
+    <div class="g-pt">★ so: 결과절 접속사; 앞 절이 원인, 뒤 절이 결과</div>
+  </div>
+
+  <div class="s-block">
+    <div class="s-num">④</div>
+    <div class="eng-box">As soon as they hurry into their self-driving car, Charlie's dad activates the car by asking it to take them to the museum.</div>
+    <div class="slash-eng">④ As soon as they hurry into their self-driving car, / Charlie's dad activates the car / by asking it / to take them to the museum.</div>
+    <div class="slash-kor">그들이 자율주행차에 서둘러 타자마자, / Charlie의 아버지는 차를 작동시킨다 / 그것에게 요청함으로써 / 그들을 박물관으로 데려가도록.</div>
+    <div class="g-name">◆ as soon as (시간 접속사)</div>
+    <div class="g-ex">▶ As soon as they hurry … — '~하자마자'의 시간 부사절</div>
+    <div class="g-pt">★ as soon as + S+V: 동작의 즉각적 연속; 미래 의미라도 현재시제 사용</div>
+    <div class="g-name">◆ by + 동명사 (수단)</div>
+    <div class="g-ex">▶ by asking it to take — '~함으로써'의 수단·방법</div>
+    <div class="g-pt">★ by + V-ing: 전치사 by 뒤에 동명사; 방법·수단 표현</div>
+  </div>
+
+  <div class="s-block">
+    <div class="s-num">⑤</div>
+    <div class="eng-box">The robot guide reads Charlie's face and notices that he feels sorry for not arriving on time.</div>
+    <div class="slash-eng">⑤ The robot guide reads Charlie's face / and notices / that he feels sorry / for not arriving on time.</div>
+    <div class="slash-kor">로봇 가이드는 Charlie의 얼굴을 읽고 / 알아챈다 / 그가 미안함을 느낀다는 것을 / 제시간에 도착하지 못한 것에 대해.</div>
+    <div class="g-name">◆ that절 목적어 (지각·인지 동사)</div>
+    <div class="g-ex">▶ notices that he feels sorry — notice의 목적어로 that절 사용</div>
+    <div class="g-pt">★ notice/know/think/believe + that절: that은 생략 가능</div>
+    <div class="g-name">◆ feel sorry for + 동명사 부정</div>
+    <div class="g-ex">▶ feel sorry for not arriving — 동명사의 부정: not + V-ing</div>
+    <div class="g-pt">★ for not V-ing: 전치사 뒤 동명사; 부정은 동명사 앞에 not</div>
+  </div>
+
+  <div class="s-block">
+    <div class="s-num">⑥</div>
+    <div class="eng-box">Then, the robot guide starts to introduce the paintings hanging on the wall.</div>
+    <div class="slash-eng">⑥ Then, the robot guide starts / to introduce / the paintings / hanging on the wall.</div>
+    <div class="slash-kor">그리고 나서, 로봇 가이드는 시작한다 / 소개하기를 / 그림들을 / 벽에 걸린.</div>
+    <div class="g-name">◆ 현재분사 후치 수식 (hanging)</div>
+    <div class="g-ex">▶ the paintings hanging on the wall — 현재분사가 명사 뒤에서 수식</div>
+    <div class="g-pt">★ 명사 + V-ing: 능동·진행의 분사 후치 수식; 관계사절로 바꾸면 which are hanging</div>
+  </div>
+
+  <div class="s-block">
+    <div class="s-num">⑦</div>
+    <div class="eng-box">Some are painted by humans, and others are painted by robots.</div>
+    <div class="slash-eng">⑦ Some are painted by humans, / and others are painted by robots.</div>
+    <div class="slash-kor">일부는 인간에 의해 그려졌고, / 다른 것들은 로봇에 의해 그려졌다.</div>
+    <div class="g-name">◆ Some … others … (일부·나머지 대조)</div>
+    <div class="g-ex">▶ Some … others … — '어떤 것들은 ~, 다른 것들은 ~' 대조 표현</div>
+    <div class="g-pt">★ some … others: 불특정 복수의 대조; some … the others는 정해진 집합에서의 분류</div>
+    <div class="g-name">◆ 수동태 (are painted by)</div>
+    <div class="g-ex">▶ are painted by humans — be + p.p. + by 행위자</div>
+    <div class="g-pt">★ 수동태: 행위의 대상이 주어; by + 행위자는 생략 가능</div>
+  </div>
+
+  <div class="s-block">
+    <div class="s-num">⑧</div>
+    <div class="eng-box">However, Charlie cannot confidently distinguish the pictures painted by robots from those painted by humans.</div>
+    <div class="slash-eng">⑧ However, Charlie cannot confidently distinguish / the pictures painted by robots / from those painted by humans.</div>
+    <div class="slash-kor">그러나 Charlie는 자신 있게 구별할 수 없다 / 로봇이 그린 그림들을 / 인간이 그린 것들로부터.</div>
+    <div class="g-name">◆ distinguish A from B (A와 B를 구별하다)</div>
+    <div class="g-ex">▶ distinguish the pictures from those — A(로봇 그림)와 B(인간 그림) 구별</div>
+    <div class="g-pt">★ distinguish A from B / tell A from B / tell A apart from B: 구별 표현</div>
+    <div class="g-name">◆ 과거분사 후치 수식 (painted)</div>
+    <div class="g-ex">▶ pictures painted by robots — 수동·완료의 과거분사가 명사 뒤 수식</div>
+    <div class="g-pt">★ 명사 + p.p.: 수동 의미의 후치 수식; those = the pictures (대용 표현)</div>
+  </div>
+
+  <div class="s-block">
+    <div class="s-num">⑨</div>
+    <div class="eng-box">Believe it or not, some of these things are happening right now thanks to artificial intelligence (AI)—technology that enables machines to perform tasks that normally require human intelligence.</div>
+    <div class="slash-eng">⑨ Believe it or not, / some of these things are happening right now / thanks to artificial intelligence (AI) / — technology that enables machines / to perform tasks / that normally require human intelligence.</div>
+    <div class="slash-kor">믿거나 말거나, / 이런 일들 중 일부가 지금 바로 일어나고 있다 / 인공지능(AI) 덕분에 / — 기계가 할 수 있게 해주는 기술이 / 작업들을 수행하도록 / 보통 인간의 지능을 필요로 하는.</div>
+    <div class="g-name">◆ thanks to (덕분에, 전치사구)</div>
+    <div class="g-ex">▶ thanks to artificial intelligence — '~ 덕분에'의 긍정적 원인·이유</div>
+    <div class="g-pt">★ thanks to vs because of: 둘 다 원인; thanks to는 긍정적 맥락 선호</div>
+    <div class="g-name">◆ enable + 목적어 + to V (사역 표현)</div>
+    <div class="g-ex">▶ enables machines to perform — '기계가 ~할 수 있게 해주다'</div>
+    <div class="g-pt">★ enable/allow/permit + O + to V: 목적격 보어로 to부정사 사용</div>
+    <div class="g-name">◆ 동격 대시(—)와 관계대명사 중첩</div>
+    <div class="g-ex">▶ AI—technology that enables … tasks that require — 동격 명사를 두 관계절이 수식</div>
+    <div class="g-pt">★ 동격: 앞 명사를 뒤 명사구가 설명; 관계절이 두 개 연속 수식 가능</div>
+  </div>
+
+  <div class="s-block">
+    <div class="s-num">⑩</div>
+    <div class="eng-box">Machines with AI can recognize speech, translate languages, and make decisions much like humans do.</div>
+    <div class="slash-eng">⑩ Machines with AI / can recognize speech, / translate languages, / and make decisions / much like humans do.</div>
+    <div class="slash-kor">AI를 갖춘 기계는 / 음성을 인식하고, / 언어를 번역하고, / 결정을 내릴 수 있다 / 인간이 하는 것과 매우 유사하게.</div>
+    <div class="g-name">◆ 병렬 구조 (recognize / translate / make)</div>
+    <div class="g-ex">▶ can recognize … translate … and make — 세 동사원형이 can에 병렬 연결</div>
+    <div class="g-pt">★ 조동사 + V원형 병렬: A, B, and C; 형태 일치 필수</div>
+    <div class="g-name">◆ much like + 절 (비교 부사구)</div>
+    <div class="g-ex">▶ much like humans do — '인간이 하는 것처럼'; do는 대동사</div>
+    <div class="g-pt">★ much like = just as; do는 앞 동사(make decisions 등)를 대신하는 대동사</div>
+  </div>
+</div>
+
+<!-- 핵심단어 -->
+<div class="pane" id="p1-pane3">
+  <div class="sec-badge">에듀케레 영수학원 · ERW-5</div>
+  <div class="sec-title">③ 핵심단어 및 표현</div>
+  <div class="vocab-item"><span class="v-word">field trip</span><span class="v-pos">n.</span><span class="v-mean">현장 체험학습</span><span class="v-deriv">—</span></div>
+  <div class="vocab-item"><span class="v-word">self-driving</span><span class="v-pos">adj.</span><span class="v-mean">자율주행의</span><span class="v-deriv">—</span></div>
+  <div class="vocab-item"><span class="v-word">activate</span><span class="v-pos">v.</span><span class="v-mean">작동시키다</span><span class="v-deriv">activation (n.), active (adj.)</span></div>
+  <div class="vocab-item"><span class="v-word">notice</span><span class="v-pos">v./n.</span><span class="v-mean">알아채다 / 공지</span><span class="v-deriv">noticeable (adj.)</span></div>
+  <div class="vocab-item"><span class="v-word">distinguish A from B</span><span class="v-pos">phr.</span><span class="v-mean">A를 B와 구별하다</span><span class="v-deriv">distinct (adj.), distinction (n.)</span></div>
+  <div class="vocab-item"><span class="v-word">confidently</span><span class="v-pos">adv.</span><span class="v-mean">자신 있게</span><span class="v-deriv">confident (adj.), confidence (n.)</span></div>
+  <div class="vocab-item"><span class="v-word">artificial intelligence</span><span class="v-pos">n.</span><span class="v-mean">인공지능</span><span class="v-deriv">artificial (adj.), intelligence (n.)</span></div>
+  <div class="vocab-item"><span class="v-word">enable</span><span class="v-pos">v.</span><span class="v-mean">가능하게 하다</span><span class="v-deriv">disable (반의어)</span></div>
+  <div class="vocab-item"><span class="v-word">perform</span><span class="v-pos">v.</span><span class="v-mean">수행하다, 공연하다</span><span class="v-deriv">performance (n.), performer (n.)</span></div>
+  <div class="vocab-item"><span class="v-word">recognize</span><span class="v-pos">v.</span><span class="v-mean">인식하다, 알아보다</span><span class="v-deriv">recognition (n.)</span></div>
+</div>
+
+<!-- 전문해석 -->
+<div class="pane" id="p1-pane4">
+  <div class="sec-badge">에듀케레 영수학원 · ERW-5</div>
+  <div class="sec-title">④ 전문해석</div>
+  <div class="trans-box">
+    "서둘러!" Charlie의 아버지가 현관문에서 소리친다. 오늘 Charlie는 박물관으로 학교 현장 체험학습을 간다. 그는 늦게 일어나 스쿨버스를 놓쳤고, 그래서 아버지가 그를 데려다 주려 한다. 그들이 자율주행차에 서둘러 타자마자, Charlie의 아버지는 차에게 박물관으로 데려가 달라고 말하여 차를 작동시킨다. Charlie가 도착하자, 그의 반 친구들과 로봇 가이드가 그를 기다리고 있다. 로봇 가이드는 Charlie의 얼굴을 읽고 그가 제시간에 도착하지 못한 것에 대해 미안함을 느끼고 있음을 알아챈다. 그것은 그에게 "괜찮아요. 늦지 않았어요."라고 말한다. 그리고 나서 로봇 가이드는 벽에 걸린 그림들을 소개하기 시작한다. 일부는 인간이 그렸고, 다른 것들은 로봇이 그린 것이다. 그러나 Charlie는 로봇이 그린 그림을 인간이 그린 것과 자신 있게 구별하지 못한다.<br><br>
+    여러분은 이런 일들이 먼 미래에 일어날 것이라고 생각하는가? 믿거나 말거나, 이 중 일부는 인공지능(AI) 덕분에 지금 바로 일어나고 있다. AI는 기계가 보통 인간의 지능을 필요로 하는 작업들을 수행할 수 있게 해주는 기술이다. AI를 갖춘 기계는 음성을 인식하고, 언어를 번역하며, 인간처럼 결정을 내릴 수 있다. 다음은 AI가 이미 우리의 삶을 바꾸고 있는 세 가지 사례이다.
+  </div>
+</div>
+
+<!-- 주제·요지 -->
+<div class="pane" id="p1-pane5">
+  <div class="sec-badge">에듀케레 영수학원 · ERW-5</div>
+  <div class="sec-title">⑤ 주제 · 요지 · 구조</div>
+  <div class="topic-card">
+    <div class="topic-label">주제</div>
+    <div class="topic-content">인공지능(AI)의 개념과 이미 우리 삶에 변화를 가져오고 있는 사례들의 소개</div>
+  </div>
+  <div class="topic-card">
+    <div class="topic-label">요지</div>
+    <div class="topic-content">AI는 기계가 인간 수준의 작업을 수행하도록 해주는 기술로, 이미 자율주행차, 감정 인식 로봇, AI 예술가 등 다양한 분야에서 우리 삶을 변화시키고 있다.</div>
+  </div>
+  <div class="topic-card">
+    <div class="topic-label">구조 흐름</div>
+    <div class="topic-content">
+      <div class="flow-step"><span class="flow-arrow">▶</span><span><b>도입:</b> 미래의 AI 일상 장면을 이야기 형식으로 제시 (Charlie의 하루)</span></div>
+      <div class="flow-step"><span class="flow-arrow">▶</span><span><b>전환:</b> 이런 일이 먼 미래가 아닌 현재에 이미 일어나고 있음을 밝힘</span></div>
+      <div class="flow-step"><span class="flow-arrow">▶</span><span><b>정의:</b> AI의 정의 — 인간 지능이 필요한 작업을 기계가 수행하게 해주는 기술</span></div>
+      <div class="flow-step"><span class="flow-arrow">▶</span><span><b>예고:</b> AI가 삶을 바꾸는 세 가지 사례 제시 예고</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- 변형문제 -->
+<div class="pane" id="p1-pane6">
+  <div class="sec-badge">에듀케레 영수학원 · ERW-5</div>
+  <div class="sec-title">⑥ 변형문제 · 서술형</div>
+
+  <div class="quiz-block" id="p1q1">
+    <div class="q-txt"><span class="q-num">1</span> 다음 글의 주제로 가장 적절한 것은?</div>
+    <div class="opts">
+      <button class="opt" onclick="check('p1q1',this,false)">① 자율주행차의 기술적 원리와 안전성</button>
+      <button class="opt" onclick="check('p1q1',this,false)">② 로봇 예술가의 창의성과 인간 예술가의 차이</button>
+      <button class="opt" onclick="check('p1q1',this,true)">③ AI의 개념과 우리 삶을 변화시키는 사례들의 소개</button>
+      <button class="opt" onclick="check('p1q1',this,false)">④ 인간과 로봇이 공존하는 미래 사회의 문제점</button>
+      <button class="opt" onclick="check('p1q1',this,false)">⑤ AI가 인간의 감정을 이해하는 방식</button>
+    </div>
+    <div class="fb" id="p1q1-fb">💡 글은 Charlie의 이야기로 AI 일상을 보여준 뒤, AI의 정의와 세 가지 사례 예고로 마무리. ③이 가장 정확한 주제.</div>
+    <button class="reset-btn" onclick="reset('p1q1')">↺ 다시풀기</button>
+  </div>
+
+  <div class="quiz-block" id="p1q2">
+    <div class="q-txt"><span class="q-num">2</span> 빈칸에 들어갈 말로 가장 적절한 것은?</div>
+    <div class="q-passage">AI is technology that __________ machines to perform tasks that normally require human intelligence.</div>
+    <div class="opts">
+      <button class="opt" onclick="check('p1q2',this,false)">① requires</button>
+      <button class="opt" onclick="check('p1q2',this,true)">② enables</button>
+      <button class="opt" onclick="check('p1q2',this,false)">③ prevents</button>
+      <button class="opt" onclick="check('p1q2',this,false)">④ forces</button>
+      <button class="opt" onclick="check('p1q2',this,false)">⑤ limits</button>
+    </div>
+    <div class="fb" id="p1q2-fb">💡 enable + O + to V: '~가 ~할 수 있게 해주다'. AI가 기계로 하여금 작업을 수행할 수 있게 해준다는 의미. ② enables.</div>
+    <button class="reset-btn" onclick="reset('p1q2')">↺ 다시풀기</button>
+  </div>
+
+  <div class="quiz-block" id="p1q3">
+    <div class="q-txt"><span class="q-num">3</span> 밑줄 친 ①~⑤ 중 어법상 틀린 것은?</div>
+    <div class="q-passage">
+      Charlie cannot confidently ①distinguish the pictures ②painted by robots from ③those ④painting by humans. Machines with AI can recognize speech, translate languages, and ⑤make decisions much like humans do.
+    </div>
+    <div class="opts">
+      <button class="opt" onclick="check('p1q3',this,false)">① distinguish</button>
+      <button class="opt" onclick="check('p1q3',this,false)">② painted</button>
+      <button class="opt" onclick="check('p1q3',this,false)">③ those</button>
+      <button class="opt" onclick="check('p1q3',this,true)">④ painting → painted</button>
+      <button class="opt" onclick="check('p1q3',this,false)">⑤ make</button>
+    </div>
+    <div class="fb" id="p1q3-fb">💡 those(= the pictures)는 '인간에 의해 그려진' 수동 관계이므로 과거분사 painted가 맞다. painting(능동·현재분사)은 틀림. ④가 오답.</div>
+    <button class="reset-btn" onclick="reset('p1q3')">↺ 다시풀기</button>
+  </div>
+
+  <div class="quiz-block" id="p1q4">
+    <div class="q-txt"><span class="q-num">4</span> 본문 내용과 일치하지 않는 것은?</div>
+    <div class="opts">
+      <button class="opt" onclick="check('p1q4',this,false)">① Charlie는 스쿨버스를 놓쳐서 아버지 차를 타고 박물관에 갔다.</button>
+      <button class="opt" onclick="check('p1q4',this,false)">② 로봇 가이드는 Charlie가 늦게 도착한 것에 대해 미안함을 느낀다고 알아챘다.</button>
+      <button class="opt" onclick="check('p1q4',this,true)">③ Charlie는 로봇이 그린 그림과 인간이 그린 그림을 쉽게 구별할 수 있었다.</button>
+      <button class="opt" onclick="check('p1q4',this,false)">④ AI는 기계가 보통 인간의 지능을 필요로 하는 작업을 수행하게 해준다.</button>
+      <button class="opt" onclick="check('p1q4',this,false)">⑤ AI를 갖춘 기계는 음성을 인식하고 언어를 번역할 수 있다.</button>
+    </div>
+    <div class="fb" id="p1q4-fb">💡 본문: "Charlie cannot confidently distinguish the pictures painted by robots from those painted by humans." — 구별하지 못한다고 했으므로 ③이 불일치.</div>
+    <button class="reset-btn" onclick="reset('p1q4')">↺ 다시풀기</button>
+  </div>
+
+  <div class="quiz-block" id="p1q5">
+    <div class="q-txt"><span class="q-num">5</span> 글의 흐름으로 보아 순서가 가장 적절한 것은?<br>
+      <span style="font-size:.82rem;font-weight:400;">(A) Believe it or not, some of these things are happening right now thanks to AI — technology that enables machines to perform tasks that normally require human intelligence.<br>
+      (B) The robot guide reads Charlie's face and notices that he feels sorry for not arriving on time. Then, it starts to introduce the paintings hanging on the wall.<br>
+      (C) Charlie cannot confidently distinguish the pictures painted by robots from those painted by humans.</span>
+    </div>
+    <div class="opts">
+      <button class="opt" onclick="check('p1q5',this,false)">① (A)-(B)-(C)</button>
+      <button class="opt" onclick="check('p1q5',this,true)">② (B)-(C)-(A)</button>
+      <button class="opt" onclick="check('p1q5',this,false)">③ (C)-(A)-(B)</button>
+      <button class="opt" onclick="check('p1q5',this,false)">④ (A)-(C)-(B)</button>
+      <button class="opt" onclick="check('p1q5',this,false)">⑤ (C)-(B)-(A)</button>
+    </div>
+    <div class="fb" id="p1q5-fb">💡 (B) 로봇이 감정 읽고 그림 소개 → (C) Charlie가 그림 구별 못함 → (A) 이것이 현실임(AI 정의). 이야기 → 사실 확인 → 설명 순. ②가 정답.</div>
+    <button class="reset-btn" onclick="reset('p1q5')">↺ 다시풀기</button>
+  </div>
+
+  <div class="written-block">
+    <div class="w-q">📝 [서술형 1] 빈칸에 알맞은 말을 본문에서 찾아 쓰시오. (각 한 단어)</div>
+    <div class="w-cond">조건: 본문에서 찾아 그대로 쓸 것.</div>
+    <p style="font-family:'EB Garamond',serif;font-size:15px;margin-bottom:12px;">
+      AI is technology that __________ machines to __________ tasks that normally require human intelligence.
+    </p>
+    <textarea class="w-input" placeholder="답안을 작성하세요..."></textarea>
+    <button class="ans-btn" onclick="toggleAns(this)">모범답안 보기</button>
+    <div class="model-ans">✅ enables / perform</div>
+  </div>
+
+  <div class="written-block">
+    <div class="w-q">📝 [서술형 2] Charlie가 박물관에서 로봇 가이드를 만났을 때 벌어진 일을 우리말 2문장으로 요약하시오.</div>
+    <div class="w-cond">조건: 각 문장은 완전한 우리말 문장으로 쓸 것.</div>
+    <textarea class="w-input" placeholder="답안을 작성하세요..."></textarea>
+    <button class="ans-btn" onclick="toggleAns(this)">모범답안 보기</button>
+    <div class="model-ans">✅ 로봇 가이드는 Charlie의 얼굴을 읽고 그가 늦게 도착해 미안해하고 있음을 알아챘다. 로봇 가이드는 벽에 걸린 그림들을 소개했는데, Charlie는 로봇이 그린 그림과 인간이 그린 그림을 자신 있게 구별하지 못했다.</div>
+  </div>
+</div>
+
+</div><!-- /panel p1 -->
+
+<!-- ===== PANEL p2: 1-2 Self-driving Cars ===== -->
+<div class="panel" id="p2">
+<div class="tab-bar">
+  <button class="tab-btn active" id="p2-tb1" onclick="showTab('p2','pane1',this)">① 전문</button>
+  <button class="tab-btn" id="p2-tb2" onclick="showTab('p2','pane2',this)">② 문장분석</button>
+  <button class="tab-btn" id="p2-tb3" onclick="showTab('p2','pane3',this)">③ 핵심단어</button>
+  <button class="tab-btn" id="p2-tb4" onclick="showTab('p2','pane4',this)">④ 전문해석</button>
+  <button class="tab-btn" id="p2-tb5" onclick="showTab('p2','pane5',this)">⑤ 주제·요지</button>
+  <button class="tab-btn" id="p2-tb6" onclick="showTab('p2','pane6',this)">⑥ 변형문제</button>
+</div>
+
+<div class="pane active" id="p2-pane1">
+  <div class="sec-badge">에듀케레 영수학원 · ERW-5</div>
+  <div class="sec-title">1-2 &nbsp; Hit the Road without a Human at the Wheel</div>
+  <div class="full-box">
+    <div class="pt">Hit the Road without a Human at the Wheel</div>
+    Self-driving cars are vehicles that don't need to be operated by a human driver during the driving phase. If the passenger simply inputs a destination, this automobile does the rest. Self-driving cars have sensors that can detect pedestrians, cyclists, other vehicles on the road, or even a plastic bag that has suddenly been blown into traffic. The AI software in self-driving cars predicts the movement of all of these objects and chooses the safest speed and direction for the car to travel. Also, because the car's AI system can do all this without becoming tired or distracted, some believe that self-driving cars are even safer than those operated by humans.
+  </div>
+</div>
+
+<div class="pane" id="p2-pane2">
+  <div class="sec-badge">에듀케레 영수학원 · ERW-5</div>
+  <div class="sec-title">② 문장분석</div>
+
+  <div class="s-block">
+    <div class="s-num">①</div>
+    <div class="eng-box">Self-driving cars are vehicles that don't need to be operated by a human driver during the driving phase.</div>
+    <div class="slash-eng">① Self-driving cars are vehicles / that don't need to be operated / by a human driver / during the driving phase.</div>
+    <div class="slash-kor">자율주행차는 차량이다 / 운전될 필요가 없는 / 인간 운전자에 의해 / 운전 단계 동안.</div>
+    <div class="g-name">◆ 관계대명사 that (주격)</div>
+    <div class="g-ex">▶ vehicles that don't need — that이 선행사 vehicles 수식</div>
+    <div class="g-pt">★ 선행사 + that + V: 주격 관계대명사; 선행사가 사람·사물 모두 가능</div>
+    <div class="g-name">◆ need to be + p.p. (수동 부정사)</div>
+    <div class="g-ex">▶ don't need to be operated — 운전될 필요가 없다 (수동 to부정사)</div>
+    <div class="g-pt">★ need to be p.p.: 수동 의미의 to부정사; 행위자는 by + 명사</div>
+  </div>
+
+  <div class="s-block">
+    <div class="s-num">②</div>
+    <div class="eng-box">If the passenger simply inputs a destination, this automobile does the rest.</div>
+    <div class="slash-eng">② If the passenger simply inputs a destination, / this automobile does the rest.</div>
+    <div class="slash-kor">승객이 그냥 목적지를 입력하면, / 이 자동차가 나머지를 알아서 한다.</div>
+    <div class="g-name">◆ 조건 부사절 If</div>
+    <div class="g-ex">▶ If … inputs … does — 조건절에 현재시제, 주절에도 현재시제</div>
+    <div class="g-pt">★ If + 현재, 주절 현재: 일반적 사실·습관적 조건; 미래라도 if절은 현재</div>
+  </div>
+
+  <div class="s-block">
+    <div class="s-num">③</div>
+    <div class="eng-box">Self-driving cars have sensors that can detect pedestrians, cyclists, other vehicles on the road, or even a plastic bag that has suddenly been blown into traffic.</div>
+    <div class="slash-eng">③ Self-driving cars have sensors / that can detect pedestrians, cyclists, other vehicles, / or even a plastic bag / that has suddenly been blown into traffic.</div>
+    <div class="slash-kor">자율주행차에는 센서가 있다 / 보행자, 자전거 이용자, 다른 차량을 감지할 수 있는, / 심지어 비닐봉지도 / 갑자기 도로로 날아온.</div>
+    <div class="g-name">◆ 현재완료 수동 (has been blown)</div>
+    <div class="g-ex">▶ has suddenly been blown into traffic — '(바람에) 날아온' 완료 수동</div>
+    <div class="g-pt">★ has/have + been + p.p.: 완료 수동; 과거의 동작 결과가 현재에 영향</div>
+    <div class="g-name">◆ 관계대명사 중첩</div>
+    <div class="g-ex">▶ sensors that … / a bag that … — 두 개의 관계절이 각각 다른 선행사 수식</div>
+    <div class="g-pt">★ 관계절 중첩: 각 관계절이 자신의 선행사만 수식; 혼동하지 않도록 주의</div>
+  </div>
+
+  <div class="s-block">
+    <div class="s-num">④</div>
+    <div class="eng-box">The AI software in self-driving cars predicts the movement of all of these objects and chooses the safest speed and direction for the car to travel.</div>
+    <div class="slash-eng">④ The AI software in self-driving cars / predicts the movement of all of these objects / and chooses the safest speed and direction / for the car to travel.</div>
+    <div class="slash-kor">자율주행차의 AI 소프트웨어는 / 이 모든 물체의 움직임을 예측하고 / 가장 안전한 속도와 방향을 선택한다 / 차가 이동하기 위한.</div>
+    <div class="g-name">◆ for + 명사 + to부정사 (의미상 주어)</div>
+    <div class="g-ex">▶ for the car to travel — to부정사의 의미상 주어를 for로 표시</div>
+    <div class="g-pt">★ for + 목적격 + to V: to부정사의 행위 주체를 명시; the car가 여행하는 것</div>
+  </div>
+
+  <div class="s-block">
+    <div class="s-num">⑤</div>
+    <div class="eng-box">Also, because the car's AI system can do all this without becoming tired or distracted, some believe that self-driving cars are even safer than those operated by humans.</div>
+    <div class="slash-eng">⑤ Also, because the car's AI system can do all this / without becoming tired or distracted, / some believe / that self-driving cars are even safer / than those operated by humans.</div>
+    <div class="slash-kor">또한, 차의 AI 시스템이 이 모든 것을 할 수 있기 때문에 / 피로해지거나 산만해지지 않고, / 일부는 믿는다 / 자율주행차가 훨씬 더 안전하다고 / 인간이 운전하는 것들보다.</div>
+    <div class="g-name">◆ without + 동명사 (부정 전치사구)</div>
+    <div class="g-ex">▶ without becoming tired or distracted — '~하지 않고'의 부정 수단</div>
+    <div class="g-pt">★ without + V-ing: 전치사 without 뒤 동명사; 부정적 조건 표현</div>
+    <div class="g-name">◆ 비교급 강조 (even safer)</div>
+    <div class="g-ex">▶ even safer than those — even이 비교급 safer를 강조</div>
+    <div class="g-pt">★ 비교급 강조: even/much/far/still/a lot + 비교급; very는 비교급 강조 불가</div>
+  </div>
+</div>
+
+<div class="pane" id="p2-pane3">
+  <div class="sec-badge">에듀케레 영수학원 · ERW-5</div>
+  <div class="sec-title">③ 핵심단어 및 표현</div>
+  <div class="vocab-item"><span class="v-word">vehicle</span><span class="v-pos">n.</span><span class="v-mean">차량, 탈것</span><span class="v-deriv">—</span></div>
+  <div class="vocab-item"><span class="v-word">operate</span><span class="v-pos">v.</span><span class="v-mean">운전하다, 작동하다</span><span class="v-deriv">operation (n.), operator (n.)</span></div>
+  <div class="vocab-item"><span class="v-word">passenger</span><span class="v-pos">n.</span><span class="v-mean">승객</span><span class="v-deriv">—</span></div>
+  <div class="vocab-item"><span class="v-word">destination</span><span class="v-pos">n.</span><span class="v-mean">목적지</span><span class="v-deriv">destine (v.), destiny (n.)</span></div>
+  <div class="vocab-item"><span class="v-word">detect</span><span class="v-pos">v.</span><span class="v-mean">감지하다, 발견하다</span><span class="v-deriv">detection (n.), detector (n.)</span></div>
+  <div class="vocab-item"><span class="v-word">pedestrian</span><span class="v-pos">n.</span><span class="v-mean">보행자</span><span class="v-deriv">—</span></div>
+  <div class="vocab-item"><span class="v-word">predict</span><span class="v-pos">v.</span><span class="v-mean">예측하다</span><span class="v-deriv">prediction (n.), predictable (adj.)</span></div>
+  <div class="vocab-item"><span class="v-word">distracted</span><span class="v-pos">adj.</span><span class="v-mean">산만해진, 주의가 분산된</span><span class="v-deriv">distract (v.), distraction (n.)</span></div>
+</div>
+
+<div class="pane" id="p2-pane4">
+  <div class="sec-badge">에듀케레 영수학원 · ERW-5</div>
+  <div class="sec-title">④ 전문해석</div>
+  <div class="trans-box">
+    <b>인간 운전자 없이 도로를 달리다</b><br><br>
+    자율주행차는 운전 단계 동안 인간 운전자가 운전할 필요가 없는 차량이다. 승객이 목적지를 입력하기만 하면 이 자동차가 나머지를 알아서 한다. 자율주행차에는 보행자, 자전거 이용자, 다른 차량, 심지어 갑자기 도로로 날아든 비닐봉지까지 감지할 수 있는 센서가 탑재되어 있다. 자율주행차의 AI 소프트웨어는 이 모든 물체의 움직임을 예측하고 차가 이동하기 위한 가장 안전한 속도와 방향을 선택한다. 또한, 차의 AI 시스템은 피로해지거나 주의가 산만해지지 않고 이 모든 것을 할 수 있기 때문에, 자율주행차가 인간이 운전하는 차보다 훨씬 더 안전하다고 믿는 사람들도 있다.
+  </div>
+</div>
+
+<div class="pane" id="p2-pane5">
+  <div class="sec-badge">에듀케레 영수학원 · ERW-5</div>
+  <div class="sec-title">⑤ 주제 · 요지 · 구조</div>
+  <div class="topic-card"><div class="topic-label">주제</div><div class="topic-content">자율주행차의 작동 원리와 안전성에 관한 AI의 역할</div></div>
+  <div class="topic-card"><div class="topic-label">요지</div><div class="topic-content">자율주행차는 센서와 AI 소프트웨어를 통해 주변 환경을 감지·예측하며, 피로와 산만함 없이 작동하므로 인간 운전보다 더 안전할 수 있다.</div></div>
+  <div class="topic-card"><div class="topic-label">구조 흐름</div><div class="topic-content">
+    <div class="flow-step"><span class="flow-arrow">▶</span><span><b>정의:</b> 자율주행차 — 인간 운전자 없이 작동하는 차량</span></div>
+    <div class="flow-step"><span class="flow-arrow">▶</span><span><b>원리1:</b> 승객이 목적지 입력 → 차가 나머지 처리</span></div>
+    <div class="flow-step"><span class="flow-arrow">▶</span><span><b>원리2:</b> 센서로 주변 감지 → AI가 속도·방향 결정</span></div>
+    <div class="flow-step"><span class="flow-arrow">▶</span><span><b>결론:</b> 피로·산만함 없음 → 인간 운전보다 안전할 수 있음</span></div>
+  </div></div>
+</div>
+
+<div class="pane" id="p2-pane6">
+  <div class="sec-badge">에듀케레 영수학원 · ERW-5</div>
+  <div class="sec-title">⑥ 변형문제 · 서술형</div>
+
+  <div class="quiz-block" id="p2q1">
+    <div class="q-txt"><span class="q-num">1</span> 다음 글의 주제로 가장 적절한 것은?</div>
+    <div class="opts">
+      <button class="opt" onclick="check('p2q1',this,false)">① 자율주행차 개발의 역사</button>
+      <button class="opt" onclick="check('p2q1',this,true)">② 자율주행차의 작동 원리와 AI 기반 안전성</button>
+      <button class="opt" onclick="check('p2q1',this,false)">③ 자율주행차의 경제적 효과</button>
+      <button class="opt" onclick="check('p2q1',this,false)">④ AI가 보행자 사고를 예방하는 방법</button>
+      <button class="opt" onclick="check('p2q1',this,false)">⑤ 미래 교통수단의 종류와 특징</button>
+    </div>
+    <div class="fb" id="p2q1-fb">💡 자율주행차 정의 → 센서 감지 → AI 예측·선택 → 안전성 결론 구조. ②가 가장 정확.</div>
+    <button class="reset-btn" onclick="reset('p2q1')">↺ 다시풀기</button>
+  </div>
+
+  <div class="quiz-block" id="p2q2">
+    <div class="q-txt"><span class="q-num">2</span> 빈칸에 들어갈 말로 가장 적절한 것은?</div>
+    <div class="q-passage">Because the car's AI system can do all this without becoming tired or __________, some believe that self-driving cars are even safer than those operated by humans.</div>
+    <div class="opts">
+      <button class="opt" onclick="check('p2q2',this,false)">① confused</button>
+      <button class="opt" onclick="check('p2q2',this,false)">② damaged</button>
+      <button class="opt" onclick="check('p2q2',this,true)">③ distracted</button>
+      <button class="opt" onclick="check('p2q2',this,false)">④ replaced</button>
+      <button class="opt" onclick="check('p2q2',this,false)">⑤ overloaded</button>
+    </div>
+    <div class="fb" id="p2q2-fb">💡 "tired or distracted" — 피로와 주의 산만은 인간 운전자의 핵심 약점. ③ distracted.</div>
+    <button class="reset-btn" onclick="reset('p2q2')">↺ 다시풀기</button>
+  </div>
+
+  <div class="quiz-block" id="p2q3">
+    <div class="q-txt"><span class="q-num">3</span> 밑줄 친 ①~⑤ 중 어법상 틀린 것은?</div>
+    <div class="q-passage">Self-driving cars have sensors that can ①detect pedestrians and cyclists. The AI software ②predicts the movement of all objects and chooses the safest direction for the car ③to travel. Because the AI system can do this without ④becoming tired, some believe self-driving cars are even safer than those ⑤operate by humans.</div>
+    <div class="opts">
+      <button class="opt" onclick="check('p2q3',this,false)">① detect</button>
+      <button class="opt" onclick="check('p2q3',this,false)">② predicts</button>
+      <button class="opt" onclick="check('p2q3',this,false)">③ to travel</button>
+      <button class="opt" onclick="check('p2q3',this,false)">④ becoming</button>
+      <button class="opt" onclick="check('p2q3',this,true)">⑤ operate → operated</button>
+    </div>
+    <div class="fb" id="p2q3-fb">💡 those(= self-driving cars)는 '인간에 의해 운전되는' 수동 관계이므로 과거분사 operated가 필요. operate(능동)는 틀림. ⑤가 오답.</div>
+    <button class="reset-btn" onclick="reset('p2q3')">↺ 다시풀기</button>
+  </div>
+
+  <div class="quiz-block" id="p2q4">
+    <div class="q-txt"><span class="q-num">4</span> 본문 내용과 일치하지 않는 것은?</div>
+    <div class="opts">
+      <button class="opt" onclick="check('p2q4',this,false)">① 자율주행차는 인간 운전자가 필요하지 않다.</button>
+      <button class="opt" onclick="check('p2q4',this,false)">② 승객이 목적지를 입력하면 차가 알아서 주행한다.</button>
+      <button class="opt" onclick="check('p2q4',this,false)">③ 자율주행차 센서는 비닐봉지도 감지할 수 있다.</button>
+      <button class="opt" onclick="check('p2q4',this,true)">④ AI 소프트웨어는 가장 빠른 속도와 방향을 선택한다.</button>
+      <button class="opt" onclick="check('p2q4',this,false)">⑤ AI 시스템은 피로해지거나 산만해지지 않는다.</button>
+    </div>
+    <div class="fb" id="p2q4-fb">💡 본문: "chooses the safest speed and direction" — 가장 빠른(fastest)이 아니라 가장 안전한(safest). ④가 불일치.</div>
+    <button class="reset-btn" onclick="reset('p2q4')">↺ 다시풀기</button>
+  </div>
+
+  <div class="quiz-block" id="p2q5">
+    <div class="q-txt"><span class="q-num">5</span> 글의 흐름으로 보아 순서가 가장 적절한 것은?<br>
+    <span style="font-size:.82rem;font-weight:400;">(A) The AI software predicts the movement of all objects and chooses the safest speed and direction for the car to travel.<br>
+    (B) Self-driving cars have sensors that can detect pedestrians, cyclists, and other vehicles.<br>
+    (C) If the passenger simply inputs a destination, this automobile does the rest.</span>
+    </div>
+    <div class="opts">
+      <button class="opt" onclick="check('p2q5',this,false)">① (A)-(B)-(C)</button>
+      <button class="opt" onclick="check('p2q5',this,false)">② (A)-(C)-(B)</button>
+      <button class="opt" onclick="check('p2q5',this,true)">③ (C)-(B)-(A)</button>
+      <button class="opt" onclick="check('p2q5',this,false)">④ (B)-(C)-(A)</button>
+      <button class="opt" onclick="check('p2q5',this,false)">⑤ (B)-(A)-(C)</button>
+    </div>
+    <div class="fb" id="p2q5-fb">💡 (C) 목적지 입력→차가 처리 → (B) 센서로 감지 → (A) AI가 예측·선택. 전체 흐름이 순차적 원리 설명. ③이 정답.</div>
+    <button class="reset-btn" onclick="reset('p2q5')">↺ 다시풀기</button>
+  </div>
+
+  <div class="written-block">
+    <div class="w-q">📝 [서술형 1] 빈칸에 알맞은 말을 본문에서 찾아 쓰시오. (각 한 단어)</div>
+    <div class="w-cond">조건: 본문에서 그대로 찾아 쓸 것.</div>
+    <p style="font-family:'EB Garamond',serif;font-size:15px;margin-bottom:12px;">The AI software __________ the movement of all objects and __________ the safest speed and direction for the car to travel.</p>
+    <textarea class="w-input" placeholder="답안을 작성하세요..."></textarea>
+    <button class="ans-btn" onclick="toggleAns(this)">모범답안 보기</button>
+    <div class="model-ans">✅ predicts / chooses</div>
+  </div>
+
+  <div class="written-block">
+    <div class="w-q">📝 [서술형 2] 자율주행차가 인간이 운전하는 차보다 안전할 수 있는 이유를 영어로 쓰시오.</div>
+    <div class="w-cond">조건: 완전한 영어 문장으로, 본문 내용을 바탕으로 25단어 내외.</div>
+    <textarea class="w-input" placeholder="답안을 작성하세요..."></textarea>
+    <button class="ans-btn" onclick="toggleAns(this)">모범답안 보기</button>
+    <div class="model-ans">✅ The car's AI system can do everything without becoming tired or distracted, so self-driving cars may be even safer than those operated by humans.</div>
+  </div>
+</div>
+</div><!-- /panel p2 -->
+
+<!-- ===== PANEL p3: 1-3 Emotional Robot ===== -->
+<div class="panel" id="p3">
+<div class="tab-bar">
+  <button class="tab-btn active" id="p3-tb1" onclick="showTab('p3','pane1',this)">① 전문</button>
+  <button class="tab-btn" id="p3-tb2" onclick="showTab('p3','pane2',this)">② 문장분석</button>
+  <button class="tab-btn" id="p3-tb3" onclick="showTab('p3','pane3',this)">③ 핵심단어</button>
+  <button class="tab-btn" id="p3-tb4" onclick="showTab('p3','pane4',this)">④ 전문해석</button>
+  <button class="tab-btn" id="p3-tb5" onclick="showTab('p3','pane5',this)">⑤ 주제·요지</button>
+  <button class="tab-btn" id="p3-tb6" onclick="showTab('p3','pane6',this)">⑥ 변형문제</button>
+</div>
+
+<div class="pane active" id="p3-pane1">
+  <div class="sec-badge">에듀케레 영수학원 · ERW-5</div>
+  <div class="sec-title">1-3 &nbsp; A Robot That Reads Your Emotions</div>
+  <div class="full-box">
+    If you've ever wanted to be friends with a robot, here is one with "emotions" for you. This "emotional" robot is designed to interact with people and sense their emotions. It uses sensors to recognize people's facial expressions and tones of voice. Through AI, it interprets these as emotions, such as anger, happiness, and sadness and reacts to them. So if you feel down, it will play your favorite song to amuse you. Thanks to these characteristics, some businesses have started using these robots in customer service roles. These robots can greet customers, engage them in conversation, and explain the products and services on behalf of the company.
+  </div>
+</div>
+
+<div class="pane" id="p3-pane2">
+  <div class="sec-badge">에듀케레 영수학원 · ERW-5</div>
+  <div class="sec-title">② 문장분석</div>
+
+  <div class="s-block">
+    <div class="s-num">①</div>
+    <div class="eng-box">If you've ever wanted to be friends with a robot, here is one with "emotions" for you.</div>
+    <div class="slash-eng">① If you've ever wanted to be friends with a robot, / here is one with "emotions" for you.</div>
+    <div class="slash-kor">로봇과 친구가 되기를 원한 적이 있다면, / 여기 당신을 위해 "감정"을 가진 로봇이 있다.</div>
+    <div class="g-name">◆ 현재완료 경험 (have ever wanted)</div>
+    <div class="g-ex">▶ you've ever wanted — '~한 적이 있다면'의 경험 용법</div>
+    <div class="g-pt">★ have + ever + p.p.: 경험의 현재완료; 부정문에서는 never 사용</div>
+    <div class="g-name">◆ 도치 구문 (here is …)</div>
+    <div class="g-ex">▶ here is one — 장소 부사 here가 문두로 이동하여 주어·동사 도치</div>
+    <div class="g-pt">★ Here + be + 주어: 제시·강조의 도치; 주어가 대명사면 도치 안 함(Here it is)</div>
+  </div>
+
+  <div class="s-block">
+    <div class="s-num">②</div>
+    <div class="eng-box">This "emotional" robot is designed to interact with people and sense their emotions.</div>
+    <div class="slash-eng">② This "emotional" robot is designed / to interact with people / and sense their emotions.</div>
+    <div class="slash-kor">이 "감정적인" 로봇은 설계되었다 / 사람들과 상호작용하고 / 그들의 감정을 감지하도록.</div>
+    <div class="g-name">◆ be designed to + V (수동태 + to부정사)</div>
+    <div class="g-ex">▶ is designed to interact and sense — '~하도록 설계되다'의 수동 목적</div>
+    <div class="g-pt">★ be designed/made/built + to V: 목적을 나타내는 to부정사; 두 동사 and로 병렬</div>
+  </div>
+
+  <div class="s-block">
+    <div class="s-num">③</div>
+    <div class="eng-box">Through AI, it interprets these as emotions, such as anger, happiness, and sadness and reacts to them.</div>
+    <div class="slash-eng">③ Through AI, / it interprets these as emotions, / such as anger, happiness, and sadness / and reacts to them.</div>
+    <div class="slash-kor">AI를 통해, / 그것은 이것들을 감정으로 해석하고, / 분노, 행복, 슬픔 같은 / 그것들에 반응한다.</div>
+    <div class="g-name">◆ interpret A as B (A를 B로 해석하다)</div>
+    <div class="g-ex">▶ interprets these as emotions — 표정·목소리를 감정으로 해석</div>
+    <div class="g-pt">★ interpret A as B / regard A as B / see A as B: A를 B로 간주</div>
+    <div class="g-name">◆ such as (예시 열거)</div>
+    <div class="g-ex">▶ such as anger, happiness, and sadness — 감정의 구체적 예시</div>
+    <div class="g-pt">★ such as = for example; 앞 명사의 구체적 예 제시; 뒤에 콤마 없이 바로 명사</div>
+  </div>
+
+  <div class="s-block">
+    <div class="s-num">④</div>
+    <div class="eng-box">So if you feel down, it will play your favorite song to amuse you.</div>
+    <div class="slash-eng">④ So if you feel down, / it will play your favorite song / to amuse you.</div>
+    <div class="slash-kor">그래서 당신이 우울하면, / 그것은 당신이 좋아하는 노래를 틀 것이다 / 당신을 즐겁게 하기 위해.</div>
+    <div class="g-name">◆ to부정사 (목적)</div>
+    <div class="g-ex">▶ to amuse you — '당신을 즐겁게 하기 위해'의 목적 부사</div>
+    <div class="g-pt">★ to + V: 목적의 부사적 용법; in order to / so as to로 바꿔 쓸 수 있음</div>
+  </div>
+
+  <div class="s-block">
+    <div class="s-num">⑤</div>
+    <div class="eng-box">Thanks to these characteristics, some businesses have started using these robots in customer service roles.</div>
+    <div class="slash-eng">⑤ Thanks to these characteristics, / some businesses have started / using these robots / in customer service roles.</div>
+    <div class="slash-kor">이러한 특성들 덕분에, / 일부 기업들은 시작했다 / 이 로봇들을 사용하기를 / 고객 서비스 역할에서.</div>
+    <div class="g-name">◆ start + 동명사 (시작하다)</div>
+    <div class="g-ex">▶ have started using — start는 to부정사·동명사 둘 다 목적어로 가능</div>
+    <div class="g-pt">★ start/begin/continue + V-ing / to V: 의미 차이 없음; 수능에서 형태 구별 문제 출제</div>
+    <div class="g-name">◆ 현재완료 (have started)</div>
+    <div class="g-ex">▶ have started using — 과거에 시작해 현재까지 계속되는 상황</div>
+    <div class="g-pt">★ 현재완료 계속: have + p.p.; 시간 표현 for, since와 자주 동반</div>
+  </div>
+
+  <div class="s-block">
+    <div class="s-num">⑥</div>
+    <div class="eng-box">These robots can greet customers, engage them in conversation, and explain the products and services on behalf of the company.</div>
+    <div class="slash-eng">⑥ These robots can greet customers, / engage them in conversation, / and explain the products and services / on behalf of the company.</div>
+    <div class="slash-kor">이 로봇들은 고객을 맞이하고, / 그들을 대화에 참여시키고, / 제품과 서비스를 설명할 수 있다 / 회사를 대신하여.</div>
+    <div class="g-name">◆ 병렬 구조 (greet / engage / explain)</div>
+    <div class="g-ex">▶ can greet … engage … and explain — 세 동사원형이 can에 병렬</div>
+    <div class="g-pt">★ 조동사 can + 동사원형 병렬: A, B, and C 형태로 나열</div>
+    <div class="g-name">◆ on behalf of (~를 대신하여)</div>
+    <div class="g-ex">▶ on behalf of the company — '회사를 대표하여'</div>
+    <div class="g-pt">★ on behalf of = in place of = as a representative of; 전치사구</div>
+  </div>
+</div>
+
+<div class="pane" id="p3-pane3">
+  <div class="sec-badge">에듀케레 영수학원 · ERW-5</div>
+  <div class="sec-title">③ 핵심단어 및 표현</div>
+  <div class="vocab-item"><span class="v-word">emotional</span><span class="v-pos">adj.</span><span class="v-mean">감정적인</span><span class="v-deriv">emotion (n.), emotionally (adv.)</span></div>
+  <div class="vocab-item"><span class="v-word">interact</span><span class="v-pos">v.</span><span class="v-mean">상호작용하다</span><span class="v-deriv">interaction (n.), interactive (adj.)</span></div>
+  <div class="vocab-item"><span class="v-word">sense</span><span class="v-pos">v./n.</span><span class="v-mean">감지하다 / 감각</span><span class="v-deriv">sensory (adj.), sensation (n.)</span></div>
+  <div class="vocab-item"><span class="v-word">facial expression</span><span class="v-pos">n.</span><span class="v-mean">표정</span><span class="v-deriv">—</span></div>
+  <div class="vocab-item"><span class="v-word">interpret A as B</span><span class="v-pos">phr.</span><span class="v-mean">A를 B로 해석하다</span><span class="v-deriv">interpretation (n.)</span></div>
+  <div class="vocab-item"><span class="v-word">amuse</span><span class="v-pos">v.</span><span class="v-mean">즐겁게 하다</span><span class="v-deriv">amusement (n.), amusing (adj.)</span></div>
+  <div class="vocab-item"><span class="v-word">characteristic</span><span class="v-pos">n./adj.</span><span class="v-mean">특성 / 특징적인</span><span class="v-deriv">characterize (v.)</span></div>
+  <div class="vocab-item"><span class="v-word">on behalf of</span><span class="v-pos">phr.</span><span class="v-mean">~를 대신하여, ~를 위하여</span><span class="v-deriv">—</span></div>
+  <div class="vocab-item"><span class="v-word">engage</span><span class="v-pos">v.</span><span class="v-mean">참여시키다, 끌어들이다</span><span class="v-deriv">engagement (n.)</span></div>
+</div>
+
+<div class="pane" id="p3-pane4">
+  <div class="sec-badge">에듀케레 영수학원 · ERW-5</div>
+  <div class="sec-title">④ 전문해석</div>
+  <div class="trans-box">
+    로봇과 친구가 되고 싶었던 적이 있다면, 여기 당신을 위해 "감정"을 가진 로봇이 있다. 이 "감정적인" 로봇은 사람들과 상호작용하고 그들의 감정을 감지하도록 설계되었다. 로봇은 센서를 사용해 사람들의 표정과 목소리 톤을 인식한다. AI를 통해 로봇은 이것들을 분노, 행복, 슬픔 같은 감정으로 해석하고 그에 반응한다. 그래서 당신이 우울하면, 로봇은 당신을 즐겁게 하기 위해 좋아하는 노래를 틀어줄 것이다. 이러한 특성들 덕분에, 일부 기업들은 고객 서비스 업무에 이 로봇들을 활용하기 시작했다. 이 로봇들은 회사를 대신하여 고객을 맞이하고, 대화에 참여시키며, 제품과 서비스를 설명할 수 있다.
+  </div>
+</div>
+
+<div class="pane" id="p3-pane5">
+  <div class="sec-badge">에듀케레 영수학원 · ERW-5</div>
+  <div class="sec-title">⑤ 주제 · 요지 · 구조</div>
+  <div class="topic-card"><div class="topic-label">주제</div><div class="topic-content">AI 기반 감정 인식 로봇의 작동 원리와 실생활 활용</div></div>
+  <div class="topic-card"><div class="topic-label">요지</div><div class="topic-content">감정 로봇은 AI를 통해 표정과 목소리를 분석해 인간의 감정에 반응하며, 이 특성을 바탕으로 고객 서비스 분야에서 활용되고 있다.</div></div>
+  <div class="topic-card"><div class="topic-label">구조 흐름</div><div class="topic-content">
+    <div class="flow-step"><span class="flow-arrow">▶</span><span><b>도입:</b> 감정 로봇 소개 — 사람과 상호작용하도록 설계</span></div>
+    <div class="flow-step"><span class="flow-arrow">▶</span><span><b>원리:</b> 센서로 표정·목소리 인식 → AI가 감정으로 해석 → 반응</span></div>
+    <div class="flow-step"><span class="flow-arrow">▶</span><span><b>예시:</b> 우울할 때 좋아하는 노래 재생</span></div>
+    <div class="flow-step"><span class="flow-arrow">▶</span><span><b>결론:</b> 기업 고객 서비스에 실제 활용 중</span></div>
+  </div></div>
+</div>
+
+<div class="pane" id="p3-pane6">
+  <div class="sec-badge">에듀케레 영수학원 · ERW-5</div>
+  <div class="sec-title">⑥ 변형문제 · 서술형</div>
+
+  <div class="quiz-block" id="p3q1">
+    <div class="q-txt"><span class="q-num">1</span> 다음 글의 주제로 가장 적절한 것은?</div>
+    <div class="opts">
+      <button class="opt" onclick="check('p3q1',this,false)">① 로봇 기술이 인간의 감정에 미치는 부정적 영향</button>
+      <button class="opt" onclick="check('p3q1',this,false)">② 고객 서비스 산업의 변화와 미래 전망</button>
+      <button class="opt" onclick="check('p3q1',this,true)">③ AI 기반 감정 인식 로봇의 작동 원리와 활용</button>
+      <button class="opt" onclick="check('p3q1',this,false)">④ 인간과 로봇 간 감정 교류의 윤리적 문제</button>
+      <button class="opt" onclick="check('p3q1',this,false)">⑤ 음악이 인간 감정에 미치는 치료적 효과</button>
+    </div>
+    <div class="fb" id="p3q1-fb">💡 감정 로봇의 원리(표정·목소리 인식 → 감정 해석 → 반응) + 기업 활용. ③이 핵심.</div>
+    <button class="reset-btn" onclick="reset('p3q1')">↺ 다시풀기</button>
+  </div>
+
+  <div class="quiz-block" id="p3q2">
+    <div class="q-txt"><span class="q-num">2</span> 빈칸에 들어갈 말로 가장 적절한 것은?</div>
+    <div class="q-passage">Through AI, the robot __________ people's facial expressions and tones of voice as emotions such as anger, happiness, and sadness.</div>
+    <div class="opts">
+      <button class="opt" onclick="check('p3q2',this,false)">① detects</button>
+      <button class="opt" onclick="check('p3q2',this,false)">② ignores</button>
+      <button class="opt" onclick="check('p3q2',this,true)">③ interprets</button>
+      <button class="opt" onclick="check('p3q2',this,false)">④ records</button>
+      <button class="opt" onclick="check('p3q2',this,false)">⑤ memorizes</button>
+    </div>
+    <div class="fb" id="p3q2-fb">💡 "interprets these as emotions" — 표정·목소리를 감정으로 해석. interpret A as B 구조. ③.</div>
+    <button class="reset-btn" onclick="reset('p3q2')">↺ 다시풀기</button>
+  </div>
+
+  <div class="quiz-block" id="p3q3">
+    <div class="q-txt"><span class="q-num">3</span> 밑줄 친 ①~⑤ 중 어법상 틀린 것은?</div>
+    <div class="q-passage">This robot is ①designed to interact with people and ②sense their emotions. It uses sensors ③to recognize facial expressions. Through AI, it interprets these as emotions and ④reacts to them. Some businesses have started ⑤use these robots in customer service roles.</div>
+    <div class="opts">
+      <button class="opt" onclick="check('p3q3',this,false)">① designed</button>
+      <button class="opt" onclick="check('p3q3',this,false)">② sense</button>
+      <button class="opt" onclick="check('p3q3',this,false)">③ to recognize</button>
+      <button class="opt" onclick="check('p3q3',this,false)">④ reacts</button>
+      <button class="opt" onclick="check('p3q3',this,true)">⑤ use → using</button>
+    </div>
+    <div class="fb" id="p3q3-fb">💡 start는 동명사·to부정사 모두 가능하지만, 이 문장에서 "started use"는 동사원형 나열로 틀림. started using 또는 started to use가 맞음. ⑤가 오답.</div>
+    <button class="reset-btn" onclick="reset('p3q3')">↺ 다시풀기</button>
+  </div>
+
+  <div class="quiz-block" id="p3q4">
+    <div class="q-txt"><span class="q-num">4</span> 본문 내용과 일치하지 않는 것은?</div>
+    <div class="opts">
+      <button class="opt" onclick="check('p3q4',this,false)">① 감정 로봇은 사람의 표정과 목소리 톤을 인식한다.</button>
+      <button class="opt" onclick="check('p3q4',this,false)">② 로봇은 AI를 통해 인식한 신호를 감정으로 해석한다.</button>
+      <button class="opt" onclick="check('p3q4',this,false)">③ 우울한 사람에게 로봇은 좋아하는 노래를 틀어준다.</button>
+      <button class="opt" onclick="check('p3q4',this,true)">④ 감정 로봇은 아직 기업 고객 서비스에 활용되지 않고 있다.</button>
+      <button class="opt" onclick="check('p3q4',this,false)">⑤ 로봇은 고객을 맞이하고 제품과 서비스를 설명할 수 있다.</button>
+    </div>
+    <div class="fb" id="p3q4-fb">💡 본문: "some businesses have started using these robots in customer service roles" — 이미 활용하고 있음. ④가 불일치.</div>
+    <button class="reset-btn" onclick="reset('p3q4')">↺ 다시풀기</button>
+  </div>
+
+  <div class="quiz-block" id="p3q5">
+    <div class="q-txt"><span class="q-num">5</span> 글의 흐름으로 보아 순서가 가장 적절한 것은?<br>
+    <span style="font-size:.82rem;font-weight:400;">(A) Thanks to these characteristics, some businesses have started using these robots in customer service roles.<br>
+    (B) This robot uses sensors to recognize people's facial expressions and tones of voice, and through AI, it interprets these as emotions.<br>
+    (C) So if you feel down, it will play your favorite song to amuse you.</span>
+    </div>
+    <div class="opts">
+      <button class="opt" onclick="check('p3q5',this,false)">① (A)-(B)-(C)</button>
+      <button class="opt" onclick="check('p3q5',this,true)">② (B)-(C)-(A)</button>
+      <button class="opt" onclick="check('p3q5',this,false)">③ (C)-(A)-(B)</button>
+      <button class="opt" onclick="check('p3q5',this,false)">④ (B)-(A)-(C)</button>
+      <button class="opt" onclick="check('p3q5',this,false)">⑤ (C)-(B)-(A)</button>
+    </div>
+    <div class="fb" id="p3q5-fb">💡 (B) 원리 설명(감지·해석) → (C) 구체 예시(우울할 때 노래) → (A) 결론(기업 활용). ②가 정답.</div>
+    <button class="reset-btn" onclick="reset('p3q5')">↺ 다시풀기</button>
+  </div>
+
+  <div class="written-block">
+    <div class="w-q">📝 [서술형 1] 빈칸에 알맞은 말을 본문에서 찾아 쓰시오. (각 한 단어)</div>
+    <div class="w-cond">조건: 본문에서 찾아 그대로 쓸 것.</div>
+    <p style="font-family:'EB Garamond',serif;font-size:15px;margin-bottom:12px;">The robot __________ people's facial expressions and tones of voice as emotions, and __________ to them accordingly.</p>
+    <textarea class="w-input" placeholder="답안을 작성하세요..."></textarea>
+    <button class="ans-btn" onclick="toggleAns(this)">모범답안 보기</button>
+    <div class="model-ans">✅ interprets / reacts</div>
+  </div>
+
+  <div class="written-block">
+    <div class="w-q">📝 [서술형 2] 감정 로봇이 기업에서 활용되는 방식을 본문을 바탕으로 영어로 쓰시오.</div>
+    <div class="w-cond">조건: 완전한 영어 문장으로, 25단어 내외.</div>
+    <textarea class="w-input" placeholder="답안을 작성하세요..."></textarea>
+    <button class="ans-btn" onclick="toggleAns(this)">모범답안 보기</button>
+    <div class="model-ans">✅ Some businesses use emotional robots in customer service to greet customers, engage them in conversation, and explain products on behalf of the company.</div>
+  </div>
+</div>
+</div><!-- /panel p3 -->
+
+<!-- ===== PANEL p4: 1-4 AARON AI Artist ===== -->
+<div class="panel" id="p4">
+<div class="tab-bar">
+  <button class="tab-btn active" id="p4-tb1" onclick="showTab('p4','pane1',this)">① 전문</button>
+  <button class="tab-btn" id="p4-tb2" onclick="showTab('p4','pane2',this)">② 문장분석</button>
+  <button class="tab-btn" id="p4-tb3" onclick="showTab('p4','pane3',this)">③ 핵심단어</button>
+  <button class="tab-btn" id="p4-tb4" onclick="showTab('p4','pane4',this)">④ 전문해석</button>
+  <button class="tab-btn" id="p4-tb5" onclick="showTab('p4','pane5',this)">⑤ 주제·요지</button>
+  <button class="tab-btn" id="p4-tb6" onclick="showTab('p4','pane6',this)">⑥ 변형문제</button>
+</div>
+
+<div class="pane active" id="p4-pane1">
+  <div class="sec-badge">에듀케레 영수학원 · ERW-5</div>
+  <div class="sec-title">1-4 &nbsp; The First Artificial Intelligence Artist — AARON</div>
+  <div class="full-box">
+    AARON is AI software that paints pictures by itself. It has been producing paintings since 1973. At first, it could only make abstract images in black and white. However, over the last 40 years, it has acquired the ability to paint plenty of realistic images of things like rocks, plants, and people, and it can now paint in color, too. AARON cannot paint new images and styles of painting by itself, but once they are coded into the software, it can draw an almost infinite number of unique paintings. Several of AARON's paintings have been widely praised and exhibited in art galleries around the world. Some people even say that they are more artistic than paintings done by humans.
+  </div>
+</div>
+
+<div class="pane" id="p4-pane2">
+  <div class="sec-badge">에듀케레 영수학원 · ERW-5</div>
+  <div class="sec-title">② 문장분석</div>
+
+  <div class="s-block">
+    <div class="s-num">①</div>
+    <div class="eng-box">AARON is AI software that paints pictures by itself.</div>
+    <div class="slash-eng">① AARON is AI software / that paints pictures by itself.</div>
+    <div class="slash-kor">AARON은 AI 소프트웨어이다 / 스스로 그림을 그리는.</div>
+    <div class="g-name">◆ 관계대명사 that (주격, 사물)</div>
+    <div class="g-ex">▶ software that paints — that이 선행사 software를 수식</div>
+    <div class="g-pt">★ 사물 선행사 + that/which + V: 주격 관계대명사; that이 더 일반적</div>
+    <div class="g-name">◆ by itself (재귀 강조 표현)</div>
+    <div class="g-ex">▶ paints pictures by itself — '혼자서, 스스로'</div>
+    <div class="g-pt">★ by oneself = alone; itself는 3인칭 단수 중성 재귀대명사</div>
+  </div>
+
+  <div class="s-block">
+    <div class="s-num">②</div>
+    <div class="eng-box">It has been producing paintings since 1973.</div>
+    <div class="slash-eng">② It has been producing paintings / since 1973.</div>
+    <div class="slash-kor">그것은 그림을 제작해 오고 있다 / 1973년부터.</div>
+    <div class="g-name">◆ 현재완료 진행 (has been producing)</div>
+    <div class="g-ex">▶ has been producing since 1973 — 과거 시점부터 현재까지 계속 진행</div>
+    <div class="g-pt">★ have/has + been + V-ing: 완료진행; 동작의 지속·반복 강조; since/for와 함께</div>
+  </div>
+
+  <div class="s-block">
+    <div class="s-num">③</div>
+    <div class="eng-box">However, over the last 40 years, it has acquired the ability to paint plenty of realistic images of things like rocks, plants, and people, and it can now paint in color, too.</div>
+    <div class="slash-eng">③ However, over the last 40 years, / it has acquired the ability / to paint plenty of realistic images / of things like rocks, plants, and people, / and it can now paint in color, too.</div>
+    <div class="slash-kor">그러나 지난 40년에 걸쳐, / 그것은 능력을 갖추었다 / 수많은 사실적 이미지를 그릴 / 바위, 식물, 사람과 같은 것들의, / 그리고 이제 색으로도 그릴 수 있다.</div>
+    <div class="g-name">◆ 현재완료 (has acquired)</div>
+    <div class="g-ex">▶ has acquired — 과거부터 현재까지 능력이 축적됨</div>
+    <div class="g-pt">★ 현재완료 결과: 과거 동작의 결과가 현재에 남아있음; over the last + 기간과 자주 사용</div>
+    <div class="g-name">◆ the ability to + V (명사 + to부정사)</div>
+    <div class="g-ex">▶ the ability to paint — '~할 능력'의 to부정사 명사 수식</div>
+    <div class="g-pt">★ ability/chance/effort/attempt + to V: 명사를 수식하는 형용사적 to부정사</div>
+  </div>
+
+  <div class="s-block">
+    <div class="s-num">④</div>
+    <div class="eng-box">AARON cannot paint new images and styles of painting by itself, but once they are coded into the software, it can draw an almost infinite number of unique paintings.</div>
+    <div class="slash-eng">④ AARON cannot paint new images and styles by itself, / but once they are coded into the software, / it can draw an almost infinite number of unique paintings.</div>
+    <div class="slash-kor">AARON은 스스로 새로운 이미지와 화풍을 그릴 수 없지만, / 그것들이 소프트웨어에 코딩되면, / 거의 무한한 수의 독창적인 그림을 그릴 수 있다.</div>
+    <div class="g-name">◆ once (시간·조건 접속사)</div>
+    <div class="g-ex">▶ once they are coded — '일단 ~되면'의 조건·시간 접속사</div>
+    <div class="g-pt">★ once + S + V: '~하자마자/일단 ~하면'; 미래 의미라도 현재시제 사용</div>
+    <div class="g-name">◆ 수동태 (are coded into)</div>
+    <div class="g-ex">▶ they are coded into the software — 코딩되어 입력되다</div>
+    <div class="g-pt">★ be coded into: '~에 입력되다, 프로그래밍되다'의 기술 표현</div>
+  </div>
+
+  <div class="s-block">
+    <div class="s-num">⑤</div>
+    <div class="eng-box">Several of AARON's paintings have been widely praised and exhibited in art galleries around the world.</div>
+    <div class="slash-eng">⑤ Several of AARON's paintings / have been widely praised and exhibited / in art galleries around the world.</div>
+    <div class="slash-kor">AARON의 그림들 중 여러 점이 / 널리 칭찬받고 전시되어 왔다 / 전 세계 미술관에서.</div>
+    <div class="g-name">◆ 현재완료 수동 (have been praised)</div>
+    <div class="g-ex">▶ have been praised and exhibited — 과거부터 현재까지 칭찬받고 전시됨</div>
+    <div class="g-pt">★ have/has + been + p.p.: 완료 수동; 두 과거분사가 and로 병렬</div>
+  </div>
+
+  <div class="s-block">
+    <div class="s-num">⑥</div>
+    <div class="eng-box">Some people even say that they are more artistic than paintings done by humans.</div>
+    <div class="slash-eng">⑥ Some people even say / that they are more artistic / than paintings done by humans.</div>
+    <div class="slash-kor">일부 사람들은 심지어 말한다 / 그것들이 더 예술적이라고 / 인간이 그린 그림들보다.</div>
+    <div class="g-name">◆ 비교급 (more artistic than)</div>
+    <div class="g-ex">▶ more artistic than paintings — 3음절 이상 형용사는 more + 원급</div>
+    <div class="g-pt">★ more + 형용사: 3음절 이상; paintings done by humans는 과거분사 후치 수식</div>
+  </div>
+</div>
+
+<div class="pane" id="p4-pane3">
+  <div class="sec-badge">에듀케레 영수학원 · ERW-5</div>
+  <div class="sec-title">③ 핵심단어 및 표현</div>
+  <div class="vocab-item"><span class="v-word">abstract</span><span class="v-pos">adj./n.</span><span class="v-mean">추상적인 / 추상화</span><span class="v-deriv">abstraction (n.)</span></div>
+  <div class="vocab-item"><span class="v-word">acquire</span><span class="v-pos">v.</span><span class="v-mean">습득하다, 얻다</span><span class="v-deriv">acquisition (n.)</span></div>
+  <div class="vocab-item"><span class="v-word">realistic</span><span class="v-pos">adj.</span><span class="v-mean">사실적인</span><span class="v-deriv">realism (n.), realistically (adv.)</span></div>
+  <div class="vocab-item"><span class="v-word">code</span><span class="v-pos">v./n.</span><span class="v-mean">코딩하다, 입력하다 / 코드</span><span class="v-deriv">coding (n.)</span></div>
+  <div class="vocab-item"><span class="v-word">infinite</span><span class="v-pos">adj.</span><span class="v-mean">무한한</span><span class="v-deriv">infinity (n.), finite (반의어)</span></div>
+  <div class="vocab-item"><span class="v-word">unique</span><span class="v-pos">adj.</span><span class="v-mean">독창적인, 독특한</span><span class="v-deriv">uniquely (adv.), uniqueness (n.)</span></div>
+  <div class="vocab-item"><span class="v-word">praise</span><span class="v-pos">v./n.</span><span class="v-mean">칭찬하다 / 칭찬</span><span class="v-deriv">praiseworthy (adj.)</span></div>
+  <div class="vocab-item"><span class="v-word">exhibit</span><span class="v-pos">v./n.</span><span class="v-mean">전시하다 / 전시품</span><span class="v-deriv">exhibition (n.)</span></div>
+  <div class="vocab-item"><span class="v-word">artistic</span><span class="v-pos">adj.</span><span class="v-mean">예술적인</span><span class="v-deriv">art (n.), artist (n.)</span></div>
+</div>
+
+<div class="pane" id="p4-pane4">
+  <div class="sec-badge">에듀케레 영수학원 · ERW-5</div>
+  <div class="sec-title">④ 전문해석</div>
+  <div class="trans-box">
+    AARON은 스스로 그림을 그리는 AI 소프트웨어이다. 1973년부터 그림을 제작해 왔다. 처음에는 흑백 추상 이미지만 만들 수 있었다. 그러나 지난 40년에 걸쳐 바위, 식물, 사람과 같은 것들을 사실적으로 표현하는 능력을 갖추었고, 이제는 색채로도 그림을 그릴 수 있다. AARON은 스스로 새로운 이미지와 화풍을 창조할 수는 없지만, 일단 소프트웨어에 코딩되고 나면 거의 무한한 수의 독창적인 그림을 그려낼 수 있다. AARON의 그림들 중 여러 점은 전 세계 미술관에서 널리 칭찬받고 전시되어 왔다. 심지어 일부 사람들은 그 그림들이 인간이 그린 것보다 더 예술적이라고 말하기도 한다.
+  </div>
+</div>
+
+<div class="pane" id="p4-pane5">
+  <div class="sec-badge">에듀케레 영수학원 · ERW-5</div>
+  <div class="sec-title">⑤ 주제 · 요지 · 구조</div>
+  <div class="topic-card"><div class="topic-label">주제</div><div class="topic-content">최초의 AI 예술가 AARON의 발전 과정과 예술적 성과</div></div>
+  <div class="topic-card"><div class="topic-label">요지</div><div class="topic-content">AI 소프트웨어 AARON은 1973년부터 그림을 그려왔으며, 코딩된 스타일 안에서 무한한 독창적 작품을 만들어 세계 미술관에서 전시될 만큼 높이 평가받고 있다.</div></div>
+  <div class="topic-card"><div class="topic-label">구조 흐름</div><div class="topic-content">
+    <div class="flow-step"><span class="flow-arrow">▶</span><span><b>소개:</b> AARON — 스스로 그림 그리는 AI</span></div>
+    <div class="flow-step"><span class="flow-arrow">▶</span><span><b>발전:</b> 1973년 흑백 추상 → 40년간 사실적·컬러 그림으로 발전</span></div>
+    <div class="flow-step"><span class="flow-arrow">▶</span><span><b>한계와 강점:</b> 새 스타일 창조 불가 vs 무한한 독창적 작품 생성</span></div>
+    <div class="flow-step"><span class="flow-arrow">▶</span><span><b>성과:</b> 세계 미술관 전시, 인간 그림보다 예술적이라는 평가</span></div>
+  </div></div>
+</div>
+
+<div class="pane" id="p4-pane6">
+  <div class="sec-badge">에듀케레 영수학원 · ERW-5</div>
+  <div class="sec-title">⑥ 변형문제 · 서술형</div>
+
+  <div class="quiz-block" id="p4q1">
+    <div class="q-txt"><span class="q-num">1</span> 다음 글의 주제로 가장 적절한 것은?</div>
+    <div class="opts">
+      <button class="opt" onclick="check('p4q1',this,false)">① AI가 예술 창작에 미치는 부정적 영향</button>
+      <button class="opt" onclick="check('p4q1',this,false)">② 미술관에서 로봇을 활용하는 방법</button>
+      <button class="opt" onclick="check('p4q1',this,true)">③ AI 예술가 AARON의 능력 발전과 예술적 성과</button>
+      <button class="opt" onclick="check('p4q1',this,false)">④ 인간 예술가와 AI의 창의성 비교</button>
+      <button class="opt" onclick="check('p4q1',this,false)">⑤ 추상화와 사실화의 차이점</button>
+    </div>
+    <div class="fb" id="p4q1-fb">💡 AARON의 발전(흑백→컬러, 추상→사실) + 무한 창작 능력 + 전시 성과. ③이 핵심.</div>
+    <button class="reset-btn" onclick="reset('p4q1')">↺ 다시풀기</button>
+  </div>
+
+  <div class="quiz-block" id="p4q2">
+    <div class="q-txt"><span class="q-num">2</span> 빈칸에 들어갈 말로 가장 적절한 것은?</div>
+    <div class="q-passage">AARON cannot paint new styles by itself, but once they are __________ into the software, it can draw an almost infinite number of unique paintings.</div>
+    <div class="opts">
+      <button class="opt" onclick="check('p4q2',this,false)">① uploaded</button>
+      <button class="opt" onclick="check('p4q2',this,false)">② transferred</button>
+      <button class="opt" onclick="check('p4q2',this,true)">③ coded</button>
+      <button class="opt" onclick="check('p4q2',this,false)">④ discovered</button>
+      <button class="opt" onclick="check('p4q2',this,false)">⑤ programmed</button>
+    </div>
+    <div class="fb" id="p4q2-fb">💡 본문: "once they are coded into the software" — 소프트웨어에 코딩되다. ③ coded.</div>
+    <button class="reset-btn" onclick="reset('p4q2')">↺ 다시풀기</button>
+  </div>
+
+  <div class="quiz-block" id="p4q3">
+    <div class="q-txt"><span class="q-num">3</span> 밑줄 친 ①~⑤ 중 어법상 틀린 것은?</div>
+    <div class="q-passage">AARON has ①acquired the ability to paint ②realistic images. Several of its paintings ③have been widely praised. Some people even say ④that they are more ⑤artistically than paintings done by humans.</div>
+    <div class="opts">
+      <button class="opt" onclick="check('p4q3',this,false)">① acquired</button>
+      <button class="opt" onclick="check('p4q3',this,false)">② realistic</button>
+      <button class="opt" onclick="check('p4q3',this,false)">③ have been</button>
+      <button class="opt" onclick="check('p4q3',this,false)">④ that</button>
+      <button class="opt" onclick="check('p4q3',this,true)">⑤ artistically → artistic</button>
+    </div>
+    <div class="fb" id="p4q3-fb">💡 "they are more ___" — be동사(are)의 보어는 형용사. artistically는 부사이므로 보어 불가. artistic(형용사)이 올바름. ⑤가 오답.</div>
+    <button class="reset-btn" onclick="reset('p4q3')">↺ 다시풀기</button>
+  </div>
+
+  <div class="quiz-block" id="p4q4">
+    <div class="q-txt"><span class="q-num">4</span> 본문 내용과 일치하지 않는 것은?</div>
+    <div class="opts">
+      <button class="opt" onclick="check('p4q4',this,false)">① AARON은 1973년부터 그림을 제작해 왔다.</button>
+      <button class="opt" onclick="check('p4q4',this,false)">② 처음에는 흑백 추상 이미지만 만들 수 있었다.</button>
+      <button class="opt" onclick="check('p4q4',this,true)">③ AARON은 스스로 완전히 새로운 화풍을 창조할 수 있다.</button>
+      <button class="opt" onclick="check('p4q4',this,false)">④ AARON의 그림들이 전 세계 미술관에 전시된 적 있다.</button>
+      <button class="opt" onclick="check('p4q4',this,false)">⑤ 일부는 AARON의 그림이 인간 그림보다 더 예술적이라고 한다.</button>
+    </div>
+    <div class="fb" id="p4q4-fb">💡 본문: "AARON cannot paint new images and styles of painting by itself" — 스스로 새 화풍 창조 불가. ③이 불일치.</div>
+    <button class="reset-btn" onclick="reset('p4q4')">↺ 다시풀기</button>
+  </div>
+
+  <div class="quiz-block" id="p4q5">
+    <div class="q-txt"><span class="q-num">5</span> 글의 흐름으로 보아 순서가 가장 적절한 것은?<br>
+    <span style="font-size:.82rem;font-weight:400;">(A) Several of AARON's paintings have been praised and exhibited in galleries around the world.<br>
+    (B) At first, it could only make abstract images in black and white.<br>
+    (C) Over the last 40 years, it has acquired the ability to paint realistic images, and it can now paint in color, too.</span>
+    </div>
+    <div class="opts">
+      <button class="opt" onclick="check('p4q5',this,false)">① (A)-(B)-(C)</button>
+      <button class="opt" onclick="check('p4q5',this,true)">② (B)-(C)-(A)</button>
+      <button class="opt" onclick="check('p4q5',this,false)">③ (C)-(A)-(B)</button>
+      <button class="opt" onclick="check('p4q5',this,false)">④ (A)-(C)-(B)</button>
+      <button class="opt" onclick="check('p4q5',this,false)">⑤ (C)-(B)-(A)</button>
+    </div>
+    <div class="fb" id="p4q5-fb">💡 (B) 처음엔 흑백 추상만 → (C) 40년간 사실적·컬러로 발전 → (A) 세계 미술관 전시 성과. 시간 순서. ②가 정답.</div>
+    <button class="reset-btn" onclick="reset('p4q5')">↺ 다시풀기</button>
+  </div>
+
+  <div class="written-block">
+    <div class="w-q">📝 [서술형 1] 빈칸에 알맞은 말을 본문에서 찾아 쓰시오. (각 한 단어)</div>
+    <div class="w-cond">조건: 본문에서 찾아 그대로 쓸 것.</div>
+    <p style="font-family:'EB Garamond',serif;font-size:15px;margin-bottom:12px;">AARON has been producing paintings since 1973, and it has __________ the ability to paint __________ images of things like rocks and plants.</p>
+    <textarea class="w-input" placeholder="답안을 작성하세요..."></textarea>
+    <button class="ans-btn" onclick="toggleAns(this)">모범답안 보기</button>
+    <div class="model-ans">✅ acquired / realistic</div>
+  </div>
+
+  <div class="written-block">
+    <div class="w-q">📝 [서술형 2] AARON의 한계와 강점을 각각 한 문장의 우리말로 쓰시오.</div>
+    <div class="w-cond">조건: 한계 1문장 + 강점 1문장.</div>
+    <textarea class="w-input" placeholder="답안을 작성하세요..."></textarea>
+    <button class="ans-btn" onclick="toggleAns(this)">모범답안 보기</button>
+    <div class="model-ans">✅ [한계] AARON은 스스로 새로운 이미지와 화풍을 창조하지 못한다. [강점] 그러나 일단 소프트웨어에 코딩되면 거의 무한한 수의 독창적인 그림을 그려낼 수 있다.</div>
+  </div>
+</div>
+</div><!-- /panel p4 -->
+
+<!-- ===== PANEL p5: 1-5 AI Ethics & Future ===== -->
+<div class="panel" id="p5">
+<div class="tab-bar">
+  <button class="tab-btn active" id="p5-tb1" onclick="showTab('p5','pane1',this)">① 전문</button>
+  <button class="tab-btn" id="p5-tb2" onclick="showTab('p5','pane2',this)">② 문장분석</button>
+  <button class="tab-btn" id="p5-tb3" onclick="showTab('p5','pane3',this)">③ 핵심단어</button>
+  <button class="tab-btn" id="p5-tb4" onclick="showTab('p5','pane4',this)">④ 전문해석</button>
+  <button class="tab-btn" id="p5-tb5" onclick="showTab('p5','pane5',this)">⑤ 주제·요지</button>
+  <button class="tab-btn" id="p5-tb6" onclick="showTab('p5','pane6',this)">⑥ 변형문제</button>
+</div>
+
+<div class="pane active" id="p5-pane1">
+  <div class="sec-badge">에듀케레 영수학원 · ERW-5</div>
+  <div class="sec-title">1-5 &nbsp; AI Ethics and the Future</div>
+  <div class="full-box">
+    Artificial intelligence carries out various tasks to improve human society in many ways. However, AI is also controversial. What some people worry about is that it may exceed human intelligence and we will no longer be able to control it. Meanwhile, other people claim that AI will never be able to overtake humans. That is because AI still lacks some important abilities, like developing goals of its own that are independent of its inventor's commands.<br><br>
+    Nobody can predict exactly how the future of AI will unfold, but it is clear that AI is quickly evolving and we will be using it more in the future. To avoid any potential problems, many experts suggest that legal and ethical standards for AI be devised. If we are prepared, humans and robots will have a better chance of coexisting peacefully and productively in the years to come.
+  </div>
+</div>
+
+<div class="pane" id="p5-pane2">
+  <div class="sec-badge">에듀케레 영수학원 · ERW-5</div>
+  <div class="sec-title">② 문장분석</div>
+
+  <div class="s-block">
+    <div class="s-num">①</div>
+    <div class="eng-box">Artificial intelligence carries out various tasks to improve human society in many ways.</div>
+    <div class="slash-eng">① Artificial intelligence carries out various tasks / to improve human society / in many ways.</div>
+    <div class="slash-kor">인공지능은 다양한 작업을 수행한다 / 인간 사회를 향상시키기 위해 / 여러 방면에서.</div>
+    <div class="g-name">◆ carry out (수행하다, 동사구)</div>
+    <div class="g-ex">▶ carries out various tasks — '다양한 업무를 수행하다'</div>
+    <div class="g-pt">★ carry out = perform = execute; 동사구 분리 불가 (carry tasks out도 가능)</div>
+  </div>
+
+  <div class="s-block">
+    <div class="s-num">②</div>
+    <div class="eng-box">What some people worry about is that it may exceed human intelligence and we will no longer be able to control it.</div>
+    <div class="slash-eng">② What some people worry about / is that it may exceed human intelligence / and we will no longer be able to control it.</div>
+    <div class="slash-kor">일부 사람들이 걱정하는 것은 / 그것이 인간 지능을 초월할 수 있다는 것이다 / 그리고 우리가 더 이상 그것을 통제할 수 없게 될 것이라는 것.</div>
+    <div class="g-name">◆ What절 주어 + be + that절 보어</div>
+    <div class="g-ex">▶ What … worry about is that — What절이 주어, that절이 보어</div>
+    <div class="g-pt">★ What + S + V + is that절: 강조·주제화 구조; What = the thing that</div>
+    <div class="g-name">◆ no longer (~더 이상 ~않다)</div>
+    <div class="g-ex">▶ will no longer be able to — '더 이상 ~할 수 없을 것이다'</div>
+    <div class="g-pt">★ no longer = not … any longer / not … anymore: 상태 중단의 부정 표현</div>
+  </div>
+
+  <div class="s-block">
+    <div class="s-num">③</div>
+    <div class="eng-box">That is because AI still lacks some important abilities, like developing goals of its own that are independent of its inventor's commands.</div>
+    <div class="slash-eng">③ That is because AI still lacks some important abilities, / like developing goals of its own / that are independent of its inventor's commands.</div>
+    <div class="slash-kor">그것은 AI가 아직 중요한 능력들이 부족하기 때문이다, / 자신만의 목표를 개발하는 것처럼 / 발명자의 명령과 무관한.</div>
+    <div class="g-name">◆ That is because vs That is why</div>
+    <div class="g-ex">▶ That is because AI lacks — '그것은 ~이기 때문이다' (원인 설명)</div>
+    <div class="g-pt">★ That is because + 원인 / That is why + 결과: 혼동 주의; 수능 빈출</div>
+    <div class="g-name">◆ independent of (~와 무관한, 독립적인)</div>
+    <div class="g-ex">▶ goals independent of its inventor's commands — 발명자의 명령과 독립적</div>
+    <div class="g-pt">★ independent of = free from = not dependent on: 독립·무관 표현</div>
+  </div>
+
+  <div class="s-block">
+    <div class="s-num">④</div>
+    <div class="eng-box">Nobody can predict exactly how the future of AI will unfold, but it is clear that AI is quickly evolving and we will be using it more in the future.</div>
+    <div class="slash-eng">④ Nobody can predict exactly / how the future of AI will unfold, / but it is clear / that AI is quickly evolving / and we will be using it more in the future.</div>
+    <div class="slash-kor">아무도 정확히 예측할 수 없다 / AI의 미래가 어떻게 전개될지, / 하지만 분명한 것은 / AI가 빠르게 진화하고 있다는 것이고 / 우리가 미래에 그것을 더 많이 사용하게 될 것이라는 것이다.</div>
+    <div class="g-name">◆ how 간접의문문</div>
+    <div class="g-ex">▶ how the future of AI will unfold — '~가 어떻게 전개될지'의 명사절</div>
+    <div class="g-pt">★ how/what/when/where + S + V: 간접의문문; 어순 주의 (의문문 어순 아님)</div>
+    <div class="g-name">◆ it is clear that (가주어 진주어)</div>
+    <div class="g-ex">▶ it is clear that AI is evolving — that절이 진주어</div>
+    <div class="g-pt">★ It is + 형용사 + that절: clear, obvious, true, important 등과 자주 사용</div>
+  </div>
+
+  <div class="s-block">
+    <div class="s-num">⑤</div>
+    <div class="eng-box">To avoid any potential problems, many experts suggest that legal and ethical standards for AI be devised.</div>
+    <div class="slash-eng">⑤ To avoid any potential problems, / many experts suggest / that legal and ethical standards for AI / be devised.</div>
+    <div class="slash-kor">잠재적인 문제를 피하기 위해, / 많은 전문가들은 제안한다 / AI에 대한 법적·윤리적 기준이 / 마련되어야 한다고.</div>
+    <div class="g-name">◆ suggest + that + (should) + V원형</div>
+    <div class="g-ex">▶ suggest that … be devised — that절 내 should 생략, 동사원형(수동) 사용</div>
+    <div class="g-pt">★ 제안·요구·주장 동사 + that + (should) + V원형: suggest/recommend/insist/demand 등; 수능 최빈출</div>
+  </div>
+
+  <div class="s-block">
+    <div class="s-num">⑥</div>
+    <div class="eng-box">If we are prepared, humans and robots will have a better chance of coexisting peacefully and productively in the years to come.</div>
+    <div class="slash-eng">⑥ If we are prepared, / humans and robots will have a better chance / of coexisting peacefully and productively / in the years to come.</div>
+    <div class="slash-kor">우리가 준비가 되어 있다면, / 인간과 로봇은 더 나은 기회를 가질 것이다 / 평화롭고 생산적으로 공존할 / 앞으로의 세월에.</div>
+    <div class="g-name">◆ have a chance of + 동명사</div>
+    <div class="g-ex">▶ have a better chance of coexisting — '공존할 더 좋은 기회를 갖다'</div>
+    <div class="g-pt">★ chance of + V-ing: 전치사 of 뒤 동명사; the chance to V와 의미 유사</div>
+    <div class="g-name">◆ in the years to come (미래에)</div>
+    <div class="g-ex">▶ in the years to come — '앞으로 올 세월에'의 관용 표현</div>
+    <div class="g-pt">★ in the years to come = in the future; to come이 years를 후치 수식</div>
+  </div>
+</div>
+
+<div class="pane" id="p5-pane3">
+  <div class="sec-badge">에듀케레 영수학원 · ERW-5</div>
+  <div class="sec-title">③ 핵심단어 및 표현</div>
+  <div class="vocab-item"><span class="v-word">controversial</span><span class="v-pos">adj.</span><span class="v-mean">논란이 많은</span><span class="v-deriv">controversy (n.), controversially (adv.)</span></div>
+  <div class="vocab-item"><span class="v-word">exceed</span><span class="v-pos">v.</span><span class="v-mean">초과하다, 능가하다</span><span class="v-deriv">excess (n.), excessive (adj.)</span></div>
+  <div class="vocab-item"><span class="v-word">overtake</span><span class="v-pos">v.</span><span class="v-mean">추월하다, 앞지르다</span><span class="v-deriv">—</span></div>
+  <div class="vocab-item"><span class="v-word">lack</span><span class="v-pos">v./n.</span><span class="v-mean">부족하다 / 부족</span><span class="v-deriv">lacking (adj.)</span></div>
+  <div class="vocab-item"><span class="v-word">independent of</span><span class="v-pos">phr.</span><span class="v-mean">~와 무관한, ~에서 독립적인</span><span class="v-deriv">independence (n.), independently (adv.)</span></div>
+  <div class="vocab-item"><span class="v-word">unfold</span><span class="v-pos">v.</span><span class="v-mean">전개되다, 펼쳐지다</span><span class="v-deriv">—</span></div>
+  <div class="vocab-item"><span class="v-word">evolve</span><span class="v-pos">v.</span><span class="v-mean">진화하다, 발전하다</span><span class="v-deriv">evolution (n.), evolutionary (adj.)</span></div>
+  <div class="vocab-item"><span class="v-word">ethical</span><span class="v-pos">adj.</span><span class="v-mean">윤리적인</span><span class="v-deriv">ethics (n.), ethically (adv.)</span></div>
+  <div class="vocab-item"><span class="v-word">devise</span><span class="v-pos">v.</span><span class="v-mean">고안하다, 마련하다</span><span class="v-deriv">device (n.)</span></div>
+  <div class="vocab-item"><span class="v-word">coexist</span><span class="v-pos">v.</span><span class="v-mean">공존하다</span><span class="v-deriv">coexistence (n.)</span></div>
+</div>
+
+<div class="pane" id="p5-pane4">
+  <div class="sec-badge">에듀케레 영수학원 · ERW-5</div>
+  <div class="sec-title">④ 전문해석</div>
+  <div class="trans-box">
+    인공지능은 다양한 방면에서 인간 사회를 향상시키기 위한 다양한 작업을 수행한다. 그러나 AI는 논란의 여지도 있다. 일부 사람들이 걱정하는 것은 AI가 인간의 지능을 능가하여 우리가 더 이상 그것을 통제하지 못하게 될 수도 있다는 점이다. 반면, 다른 사람들은 AI가 결코 인간을 앞지를 수 없다고 주장한다. 그것은 AI가 아직 발명자의 명령과 무관한 자신만의 목표를 개발하는 것과 같은 중요한 능력들이 여전히 부족하기 때문이다.<br><br>
+    AI의 미래가 어떻게 전개될지는 아무도 정확히 예측할 수 없지만, AI가 빠르게 진화하고 있으며 우리가 미래에 더 많이 활용하게 될 것이라는 점은 분명하다. 잠재적인 문제를 피하기 위해, 많은 전문가들은 AI에 대한 법적·윤리적 기준이 마련되어야 한다고 제안한다. 우리가 준비되어 있다면, 인간과 로봇은 앞으로의 세월에 평화롭고 생산적으로 공존할 더 나은 기회를 갖게 될 것이다.
+  </div>
+</div>
+
+<div class="pane" id="p5-pane5">
+  <div class="sec-badge">에듀케레 영수학원 · ERW-5</div>
+  <div class="sec-title">⑤ 주제 · 요지 · 구조</div>
+  <div class="topic-card"><div class="topic-label">주제</div><div class="topic-content">AI의 논란과 미래 대응 방안 — 법적·윤리적 기준 마련의 필요성</div></div>
+  <div class="topic-card"><div class="topic-label">요지</div><div class="topic-content">AI의 미래는 불확실하지만 분명히 진화하고 있으므로, 잠재적 문제를 예방하기 위해 윤리적·법적 기준을 마련하고 준비한다면 인간과 로봇이 평화롭게 공존할 수 있다.</div></div>
+  <div class="topic-card"><div class="topic-label">구조 흐름</div><div class="topic-content">
+    <div class="flow-step"><span class="flow-arrow">▶</span><span><b>긍정면:</b> AI가 인간 사회를 다양한 방식으로 향상</span></div>
+    <div class="flow-step"><span class="flow-arrow">▶</span><span><b>논란:</b> 두 가지 시각 — AI가 인간 초월(걱정) vs 결코 인간 앞지를 수 없음(반박)</span></div>
+    <div class="flow-step"><span class="flow-arrow">▶</span><span><b>현실:</b> AI의 미래는 불확실하지만 빠르게 진화 중</span></div>
+    <div class="flow-step"><span class="flow-arrow">▶</span><span><b>해결:</b> 법적·윤리적 기준 마련 → 인간·로봇 평화 공존</span></div>
+  </div></div>
+</div>
+
+<div class="pane" id="p5-pane6">
+  <div class="sec-badge">에듀케레 영수학원 · ERW-5</div>
+  <div class="sec-title">⑥ 변형문제 · 서술형</div>
+
+  <div class="quiz-block" id="p5q1">
+    <div class="q-txt"><span class="q-num">1</span> 다음 글의 주제로 가장 적절한 것은?</div>
+    <div class="opts">
+      <button class="opt" onclick="check('p5q1',this,false)">① AI가 사회에 미치는 긍정적 효과</button>
+      <button class="opt" onclick="check('p5q1',this,false)">② 인간과 로봇의 감정적 유대 형성</button>
+      <button class="opt" onclick="check('p5q1',this,true)">③ AI의 논란과 평화로운 공존을 위한 준비의 필요성</button>
+      <button class="opt" onclick="check('p5q1',this,false)">④ 전문가들의 AI 개발 방향 제시</button>
+      <button class="opt" onclick="check('p5q1',this,false)">⑤ AI의 기술적 한계와 극복 방안</button>
+    </div>
+    <div class="fb" id="p5q1-fb">💡 논란(찬반) → 불확실한 미래 → 법적·윤리적 기준 → 공존 가능. ③이 핵심.</div>
+    <button class="reset-btn" onclick="reset('p5q1')">↺ 다시풀기</button>
+  </div>
+
+  <div class="quiz-block" id="p5q2">
+    <div class="q-txt"><span class="q-num">2</span> 빈칸에 들어갈 말로 가장 적절한 것은?</div>
+    <div class="q-passage">To avoid any potential problems, many experts suggest that legal and ethical __________ for AI be devised.</div>
+    <div class="opts">
+      <button class="opt" onclick="check('p5q2',this,false)">① methods</button>
+      <button class="opt" onclick="check('p5q2',this,false)">② boundaries</button>
+      <button class="opt" onclick="check('p5q2',this,true)">③ standards</button>
+      <button class="opt" onclick="check('p5q2',this,false)">④ limitations</button>
+      <button class="opt" onclick="check('p5q2',this,false)">⑤ agreements</button>
+    </div>
+    <div class="fb" id="p5q2-fb">💡 본문: "legal and ethical standards for AI be devised" — 기준(standards)이 마련되어야 함. ③.</div>
+    <button class="reset-btn" onclick="reset('p5q2')">↺ 다시풀기</button>
+  </div>
+
+  <div class="quiz-block" id="p5q3">
+    <div class="q-txt"><span class="q-num">3</span> 밑줄 친 ①~⑤ 중 어법상 틀린 것은?</div>
+    <div class="q-passage">What some people worry about ①is that AI may ②exceed human intelligence. AI still ③lacks the ability to develop goals ④independent of its inventor's commands. Experts suggest that standards for AI ⑤coexist in legal frameworks.</div>
+    <div class="opts">
+      <button class="opt" onclick="check('p5q3',this,false)">① is</button>
+      <button class="opt" onclick="check('p5q3',this,false)">② exceed</button>
+      <button class="opt" onclick="check('p5q3',this,false)">③ lacks</button>
+      <button class="opt" onclick="check('p5q3',this,false)">④ independent</button>
+      <button class="opt" onclick="check('p5q3',this,true)">⑤ coexist → be devised</button>
+    </div>
+    <div class="fb" id="p5q3-fb">💡 "suggest that … standards … coexist" — 문맥상 표준이 '공존하는' 것이 아니라 '마련되어야' 하므로 수동형 be devised가 맞음. 또한 suggest + that + (should) + V원형 규칙으로 be devised가 올바름. ⑤가 오답.</div>
+    <button class="reset-btn" onclick="reset('p5q3')">↺ 다시풀기</button>
+  </div>
+
+  <div class="quiz-block" id="p5q4">
+    <div class="q-txt"><span class="q-num">4</span> 본문 내용과 일치하지 않는 것은?</div>
+    <div class="opts">
+      <button class="opt" onclick="check('p5q4',this,false)">① AI가 인간 사회를 여러 방면에서 향상시킨다고 한다.</button>
+      <button class="opt" onclick="check('p5q4',this,false)">② AI가 인간의 지능을 초월할 수 있다고 걱정하는 사람들이 있다.</button>
+      <button class="opt" onclick="check('p5q4',this,false)">③ AI는 발명자의 명령과 무관한 목표를 개발하는 능력이 아직 부족하다.</button>
+      <button class="opt" onclick="check('p5q4',this,true)">④ 전문가들은 AI의 발전을 완전히 중단해야 한다고 제안한다.</button>
+      <button class="opt" onclick="check('p5q4',this,false)">⑤ 준비가 된다면 인간과 로봇이 평화롭게 공존할 수 있다.</button>
+    </div>
+    <div class="fb" id="p5q4-fb">💡 본문: "experts suggest that legal and ethical standards for AI be devised" — 중단이 아니라 기준 마련을 제안. ④가 불일치.</div>
+    <button class="reset-btn" onclick="reset('p5q4')">↺ 다시풀기</button>
+  </div>
+
+  <div class="quiz-block" id="p5q5">
+    <div class="q-txt"><span class="q-num">5</span> 글의 흐름으로 보아 순서가 가장 적절한 것은?<br>
+    <span style="font-size:.82rem;font-weight:400;">(A) To avoid any potential problems, many experts suggest that legal and ethical standards for AI be devised.<br>
+    (B) What some people worry about is that AI may exceed human intelligence and we will no longer be able to control it.<br>
+    (C) AI still lacks some important abilities, like developing goals independent of its inventor's commands.</span>
+    </div>
+    <div class="opts">
+      <button class="opt" onclick="check('p5q5',this,false)">① (A)-(B)-(C)</button>
+      <button class="opt" onclick="check('p5q5',this,false)">② (A)-(C)-(B)</button>
+      <button class="opt" onclick="check('p5q5',this,false)">③ (B)-(A)-(C)</button>
+      <button class="opt" onclick="check('p5q5',this,true)">④ (B)-(C)-(A)</button>
+      <button class="opt" onclick="check('p5q5',this,false)">⑤ (C)-(B)-(A)</button>
+    </div>
+    <div class="fb" id="p5q5-fb">💡 (B) 우려 제시(AI가 인간 초월 걱정) → (C) 반박 근거(AI의 능력 한계) → (A) 해결책(기준 마련 제안). ④가 정답.</div>
+    <button class="reset-btn" onclick="reset('p5q5')">↺ 다시풀기</button>
+  </div>
+
+  <div class="written-block">
+    <div class="w-q">📝 [서술형 1] 빈칸에 알맞은 말을 본문에서 찾아 쓰시오. (각 한 단어)</div>
+    <div class="w-cond">조건: 본문에서 찾아 그대로 쓸 것.</div>
+    <p style="font-family:'EB Garamond',serif;font-size:15px;margin-bottom:12px;">Many experts suggest that legal and __________ standards for AI be __________ to avoid any potential problems.</p>
+    <textarea class="w-input" placeholder="답안을 작성하세요..."></textarea>
+    <button class="ans-btn" onclick="toggleAns(this)">모범답안 보기</button>
+    <div class="model-ans">✅ ethical / devised</div>
+  </div>
+
+  <div class="written-block">
+    <div class="w-q">📝 [서술형 2] AI에 대한 두 가지 상반된 견해를 각각 한 문장의 우리말로 쓰시오.</div>
+    <div class="w-cond">조건: 걱정하는 입장 1문장 + 반대 입장 1문장.</div>
+    <textarea class="w-input" placeholder="답안을 작성하세요..."></textarea>
+    <button class="ans-btn" onclick="toggleAns(this)">모범답안 보기</button>
+    <div class="model-ans">✅ [걱정] AI가 인간의 지능을 초월하여 우리가 더 이상 통제하지 못하게 될 수도 있다고 우려하는 사람들이 있다. [반박] 반면 AI는 발명자의 명령과 무관한 자신만의 목표를 개발하는 능력이 아직 부족하기 때문에 인간을 앞지르지 못할 것이라고 주장하는 사람들도 있다.</div>
+  </div>
+</div>
+</div><!-- /panel p5 -->
+
+<!-- ===== PANEL p7: 2-1 Futurist Interview (전반) ===== -->
+<div class="panel" id="p7">
+<div class="tab-bar">
+  <button class="tab-btn active" id="p7-tb1" onclick="showTab('p7','pane1',this)">① 전문</button>
+  <button class="tab-btn" id="p7-tb2" onclick="showTab('p7','pane2',this)">② 문장분석</button>
+  <button class="tab-btn" id="p7-tb3" onclick="showTab('p7','pane3',this)">③ 핵심단어</button>
+  <button class="tab-btn" id="p7-tb4" onclick="showTab('p7','pane4',this)">④ 전문해석</button>
+  <button class="tab-btn" id="p7-tb5" onclick="showTab('p7','pane5',this)">⑤ 주제·요지</button>
+  <button class="tab-btn" id="p7-tb6" onclick="showTab('p7','pane6',this)">⑥ 변형문제</button>
+</div>
+
+<!-- ① 전문 -->
+<div class="pane active" id="p7-pane1">
+  <div class="sec-badge">에듀케레 영수학원 · ERW-5</div>
+  <div class="sec-title">2-1 &nbsp; An Interview with a Futurist</div>
+  <div class="full-box">
+    Hailey: Good afternoon, everyone! This is Hailey, and today we are talking about jobs of the future. Many high school students are encouraged to figure out which career they would like to pursue in the future. It is a huge concern for many students. So, today, we've invited a special guest, who has some great advice for them. Let's give a great big welcome to famous futurist Dr. James Kim.<br><br>
+    Dr. Kim: Thank you for inviting me, Hailey.<br><br>
+    Hailey: It's my pleasure. In many books and films depicting the future, robots have taken over human jobs. Do you think this will eventually happen?<br><br>
+    Dr. Kim: In the 18th century, the introduction of machines in factories caused many people to lose their jobs. Likewise, I believe that robots will have a similar effect, replacing lots of the jobs that people are doing now. In my view, occupations that involve repetitive and mechanical tasks in particular will be taken over by robots.
+  </div>
+</div>
+
+<!-- ② 문장분석 -->
+<div class="pane" id="p7-pane2">
+  <div class="sec-badge">에듀케레 영수학원 · ERW-5</div>
+  <div class="sec-title">② 문장분석</div>
+
+  <div class="s-block">
+    <div class="s-num">①</div>
+    <div class="eng-box">Many high school students are encouraged to figure out which career they would like to pursue in the future.</div>
+    <div class="slash-eng">Many high school students / are encouraged / to figure out / which career they would like to pursue / in the future.</div>
+    <div class="slash-kor">많은 고등학생들이 / 권유받는다 / 파악하도록 / 어떤 진로를 추구하고 싶은지를 / 미래에.</div>
+    <div class="g-name">◆ 수동태 + to부정사 (be encouraged to V)</div>
+    <div class="g-ex">▶ are <u>encouraged to figure out</u> — '~하도록 권유받다'의 수동태</div>
+    <div class="g-pt">★ be encouraged / asked / expected / required + to V: 수동 + to부정사 구조</div>
+    <div class="g-name">◆ 간접의문문 (which + 명사 + 주어 + 동사)</div>
+    <div class="g-ex">▶ <u>which career they would like to pursue</u> — figure out의 목적어인 간접의문문</div>
+    <div class="g-pt">★ 간접의문문: 의문사 + 주어 + 동사 어순 (도치 없음)</div>
+  </div>
+
+  <div class="s-block">
+    <div class="s-num">②</div>
+    <div class="eng-box">It is a huge concern for many students.</div>
+    <div class="slash-eng">It is a huge concern / for many students.</div>
+    <div class="slash-kor">그것은 큰 고민이다 / 많은 학생들에게.</div>
+    <div class="g-name">◆ It (앞 내용 지시 대명사)</div>
+    <div class="g-ex">▶ <u>It</u> is a huge concern — 앞 문장 전체(진로 파악)를 받는 대명사</div>
+    <div class="g-pt">★ it: 가주어가 아닌 앞 문장·절을 대신하는 지시 대명사로도 쓰임</div>
+  </div>
+
+  <div class="s-block">
+    <div class="s-num">③</div>
+    <div class="eng-box">In many books and films depicting the future, robots have taken over human jobs.</div>
+    <div class="slash-eng">In many books and films / depicting the future, / robots have taken over / human jobs.</div>
+    <div class="slash-kor">많은 책과 영화에서 / 미래를 묘사하는 / 로봇이 장악했다 / 인간의 일자리를.</div>
+    <div class="g-name">◆ 현재분사 수식 (depicting)</div>
+    <div class="g-ex">▶ books and films <u>depicting</u> the future — 분사가 앞 명사를 능동으로 수식</div>
+    <div class="g-pt">★ 명사 + V-ing: 능동 의미의 분사 수식; 명사 + p.p.: 수동 의미</div>
+    <div class="g-name">◆ 현재완료 (have + p.p.)</div>
+    <div class="g-ex">▶ have <u>taken over</u> — 과거부터 현재까지의 결과·영향</div>
+    <div class="g-pt">★ take over: 장악하다, 인수하다; 현재완료로 현재 상태까지 영향 표현</div>
+  </div>
+
+  <div class="s-block">
+    <div class="s-num">④</div>
+    <div class="eng-box">In the 18th century, the introduction of machines in factories caused many people to lose their jobs.</div>
+    <div class="slash-eng">In the 18th century, / the introduction of machines in factories / caused many people / to lose their jobs.</div>
+    <div class="slash-kor">18세기에, / 공장에서 기계의 도입은 / 많은 사람들로 하여금 / 일자리를 잃게 했다.</div>
+    <div class="g-name">◆ cause + 목적어 + to부정사 (사역)</div>
+    <div class="g-ex">▶ <u>caused</u> many people <u>to lose</u> — '~이 …하게 하다'의 원인-결과 구조</div>
+    <div class="g-pt">★ cause/force/enable/allow + O + to V: to부정사를 취하는 사역·허용 동사</div>
+  </div>
+
+  <div class="s-block">
+    <div class="s-num">⑤</div>
+    <div class="eng-box">Likewise, I believe that robots will have a similar effect, replacing lots of the jobs that people are doing now.</div>
+    <div class="slash-eng">Likewise, / I believe / that robots will have a similar effect, / replacing lots of the jobs / that people are doing now.</div>
+    <div class="slash-kor">마찬가지로, / 나는 믿는다 / 로봇이 비슷한 영향을 미칠 것이라고, / 많은 일자리를 대체하면서 / 사람들이 현재 하고 있는.</div>
+    <div class="g-name">◆ 분사구문 (결과·부수 상황)</div>
+    <div class="g-ex">▶ will have a similar effect, <u>replacing</u> lots of the jobs — 앞 내용의 부수적 결과</div>
+    <div class="g-pt">★ , V-ing: 앞 절의 결과·부수 상황; 주어(robots)와 능동 관계</div>
+    <div class="g-name">◆ 목적격 관계대명사 that (생략 가능)</div>
+    <div class="g-ex">▶ the jobs <u>that</u> people are doing now — 목적격 관계대명사; 생략 가능</div>
+    <div class="g-pt">★ 목적격 관계대명사(that/which): 선행사가 사물일 때; 생략 가능</div>
+  </div>
+
+  <div class="s-block">
+    <div class="s-num">⑥</div>
+    <div class="eng-box">In my view, occupations that involve repetitive and mechanical tasks in particular will be taken over by robots.</div>
+    <div class="slash-eng">In my view, / occupations / that involve repetitive and mechanical tasks / in particular / will be taken over by robots.</div>
+    <div class="slash-kor">내 견해에서, / 직업들이 / 반복적이고 기계적인 작업을 포함하는 / 특히 / 로봇에 의해 장악될 것이다.</div>
+    <div class="g-name">◆ 미래 수동태 (will be + p.p.)</div>
+    <div class="g-ex">▶ will <u>be taken over</u> by robots — 미래에 로봇에 의해 대체될 것</div>
+    <div class="g-pt">★ will be + p.p.: 미래 수동; by + 행위자 표현</div>
+    <div class="g-name">◆ 주격 관계대명사 that</div>
+    <div class="g-ex">▶ occupations <u>that</u> involve — that이 선행사 occupations 수식</div>
+    <div class="g-pt">★ 주격 관계대명사: 선행사의 수에 동사 일치 (occupations → involve)</div>
+  </div>
+</div>
+
+<!-- ③ 핵심단어 -->
+<div class="pane" id="p7-pane3">
+  <div class="sec-badge">에듀케레 영수학원 · ERW-5</div>
+  <div class="sec-title">③ 핵심단어 및 표현</div>
+  <div class="vocab-item"><span class="v-word">futurist</span><span class="v-pos">n.</span><span class="v-mean">미래학자</span><span class="v-deriv">future (n.), futuristic (adj.)</span></div>
+  <div class="vocab-item"><span class="v-word">pursue</span><span class="v-pos">v.</span><span class="v-mean">추구하다</span><span class="v-deriv">pursuit (n.)</span></div>
+  <div class="vocab-item"><span class="v-word">concern</span><span class="v-pos">n./v.</span><span class="v-mean">걱정, 관심사 / 걱정시키다</span><span class="v-deriv">concerning (adj.), concerned (adj.)</span></div>
+  <div class="vocab-item"><span class="v-word">depict</span><span class="v-pos">v.</span><span class="v-mean">묘사하다</span><span class="v-deriv">depiction (n.)</span></div>
+  <div class="vocab-item"><span class="v-word">take over</span><span class="v-pos">phr.</span><span class="v-mean">장악하다, 인수하다</span><span class="v-deriv">takeover (n.)</span></div>
+  <div class="vocab-item"><span class="v-word">introduction</span><span class="v-pos">n.</span><span class="v-mean">도입, 소개</span><span class="v-deriv">introduce (v.), introductory (adj.)</span></div>
+  <div class="vocab-item"><span class="v-word">likewise</span><span class="v-pos">adv.</span><span class="v-mean">마찬가지로</span><span class="v-deriv">—</span></div>
+  <div class="vocab-item"><span class="v-word">repetitive</span><span class="v-pos">adj.</span><span class="v-mean">반복적인</span><span class="v-deriv">repeat (v.), repetition (n.)</span></div>
+  <div class="vocab-item"><span class="v-word">mechanical</span><span class="v-pos">adj.</span><span class="v-mean">기계적인</span><span class="v-deriv">mechanic (n.), mechanism (n.)</span></div>
+  <div class="vocab-item"><span class="v-word">occupation</span><span class="v-pos">n.</span><span class="v-mean">직업, 직종</span><span class="v-deriv">occupy (v.), occupational (adj.)</span></div>
+  <div class="vocab-item"><span class="v-word">in particular</span><span class="v-pos">phr.</span><span class="v-mean">특히</span><span class="v-deriv">particular (adj.), particularly (adv.)</span></div>
+  <div class="vocab-item"><span class="v-word">figure out</span><span class="v-pos">phr.</span><span class="v-mean">파악하다, 알아내다</span><span class="v-deriv">—</span></div>
+</div>
+
+<!-- ④ 전문해석 -->
+<div class="pane" id="p7-pane4">
+  <div class="sec-badge">에듀케레 영수학원 · ERW-5</div>
+  <div class="sec-title">④ 전문해석</div>
+  <div class="trans-box">
+    Hailey: 안녕하세요, 여러분! 저는 Hailey입니다. 오늘은 미래의 직업에 대해 이야기해 보겠습니다. 많은 고등학생들이 미래에 어떤 진로를 선택할지 고민하도록 권유받고 있습니다. 이것은 많은 학생들에게 매우 큰 고민거리입니다. 그래서 오늘은, 그들에게 훌륭한 조언을 해 주실 특별한 분을 초대했습니다. 유명한 미래학자 Dr. James Kim을 박수로 맞이해 주세요.<br><br>
+    Dr. Kim: 초대해 주셔서 감사합니다, Hailey.<br><br>
+    Hailey: 영광입니다. 미래를 다루는 많은 책과 영화에서 로봇이 인간의 일자리를 장악했습니다. 이런 일이 결국 실제로 일어날 것이라고 생각하시나요?<br><br>
+    Dr. Kim: 18세기에, 공장에 기계가 도입되면서 많은 사람들이 일자리를 잃었습니다. 마찬가지로, 저는 로봇도 비슷한 영향을 미쳐서, 사람들이 지금 하고 있는 많은 일자리를 대체할 것이라고 생각합니다. 제 견해로는, 특히 반복적이고 기계적인 작업을 수반하는 직종들이 로봇에 의해 장악될 것입니다.
+  </div>
+</div>
+
+<!-- ⑤ 주제·요지 -->
+<div class="pane" id="p7-pane5">
+  <div class="sec-badge">에듀케레 영수학원 · ERW-5</div>
+  <div class="sec-title">⑤ 주제 · 요지 · 구조</div>
+  <div class="topic-card">
+    <div class="topic-label">주제</div>
+    <div class="topic-content">로봇 기술의 발전이 반복적·기계적 직업을 대체할 것이라는 미래학자의 전망</div>
+  </div>
+  <div class="topic-card">
+    <div class="topic-label">요지</div>
+    <div class="topic-content">18세기 기계화가 일자리를 빼앗았듯이, 로봇도 마찬가지로 현재의 많은 직업, 특히 반복적·기계적 작업을 장악할 것이다.</div>
+  </div>
+  <div class="topic-card">
+    <div class="topic-label">구조 흐름</div>
+    <div class="topic-content">
+      <div class="flow-step"><span class="flow-arrow">▶</span><span><b>도입:</b> 미래 직업은 많은 학생의 큰 고민 — 미래학자 초대</span></div>
+      <div class="flow-step"><span class="flow-arrow">▶</span><span><b>질문:</b> 로봇이 결국 인간 직업을 장악할 것인가?</span></div>
+      <div class="flow-step"><span class="flow-arrow">▶</span><span><b>역사적 유추:</b> 18세기 기계화 → 일자리 상실 → 로봇도 같은 효과</span></div>
+      <div class="flow-step"><span class="flow-arrow">▶</span><span><b>결론:</b> 반복적·기계적 직종이 특히 로봇에 대체될 것</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ⑥ 변형문제 -->
+<div class="pane" id="p7-pane6">
+  <div class="sec-badge">에듀케레 영수학원 · ERW-5</div>
+  <div class="sec-title">⑥ 변형문제 · 서술형</div>
+
+  <div class="quiz-block" id="p7q1">
+    <div class="q-txt"><span class="q-num">1</span> 다음 글의 주제로 가장 적절한 것은?</div>
+    <div class="opts">
+      <button class="opt" onclick="check('p7q1',this,false)">① 18세기 산업혁명이 현대 사회에 미친 긍정적 영향</button>
+      <button class="opt" onclick="check('p7q1',this,true)">② 로봇 기술 발전이 반복적·기계적 직업을 대체할 것이라는 전망</button>
+      <button class="opt" onclick="check('p7q1',this,false)">③ 미래학자가 되기 위한 자격 요건과 교육 방법</button>
+      <button class="opt" onclick="check('p7q1',this,false)">④ 고등학생이 진로를 선택할 때 고려해야 할 요소</button>
+      <button class="opt" onclick="check('p7q1',this,false)">⑤ 인공지능과 로봇이 협력하여 새 직업을 만드는 방법</button>
+    </div>
+    <div class="fb" id="p7q1-fb">💡 Dr. Kim의 핵심 주장: 18세기 기계화처럼 로봇도 특히 반복적·기계적 직종을 대체할 것. ②가 정답.</div>
+    <button class="reset-btn" onclick="reset('p7q1')">↺ 다시풀기</button>
+  </div>
+
+  <div class="quiz-block" id="p7q2">
+    <div class="q-txt"><span class="q-num">2</span> 빈칸에 들어갈 말로 가장 적절한 것은?</div>
+    <div class="q-passage">In my view, occupations that involve __________ and mechanical tasks in particular will be taken over by robots.</div>
+    <div class="opts">
+      <button class="opt" onclick="check('p7q2',this,false)">① creative</button>
+      <button class="opt" onclick="check('p7q2',this,false)">② complex</button>
+      <button class="opt" onclick="check('p7q2',this,true)">③ repetitive</button>
+      <button class="opt" onclick="check('p7q2',this,false)">④ innovative</button>
+      <button class="opt" onclick="check('p7q2',this,false)">⑤ intellectual</button>
+    </div>
+    <div class="fb" id="p7q2-fb">💡 본문: "occupations that involve repetitive and mechanical tasks" — 반복적이고 기계적인 작업이 로봇 대체의 대상. ③ repetitive가 정답.</div>
+    <button class="reset-btn" onclick="reset('p7q2')">↺ 다시풀기</button>
+  </div>
+
+  <div class="quiz-block" id="p7q3">
+    <div class="q-txt"><span class="q-num">3</span> 밑줄 친 ①~⑤ 중 어법상 틀린 것은?</div>
+    <div class="q-passage">In the 18th century, the introduction of machines in factories ①<u>caused</u> many people to lose their jobs. Likewise, I believe that robots will have a similar effect, ②<u>replace</u> lots of the jobs that people are doing now. In my view, occupations ③<u>that</u> involve repetitive and mechanical tasks ④<u>in particular</u> will be ⑤<u>taken over</u> by robots.</div>
+    <div class="opts">
+      <button class="opt" onclick="check('p7q3',this,false)">① caused</button>
+      <button class="opt" onclick="check('p7q3',this,false)">② replace</button>
+      <button class="opt" onclick="check('p7q3',this,false)">③ that</button>
+      <button class="opt" onclick="check('p7q3',this,false)">④ in particular</button>
+      <button class="opt" onclick="check('p7q3',this,true)">⑤ replace → replacing</button>
+    </div>
+    <div class="fb" id="p7q3-fb">💡 "will have a similar effect, ___" — 앞 절의 부수적 결과를 나타내는 분사구문이므로 replace가 아닌 replacing이 와야 함. ②가 오답 (선택지 표기상 ⑤로 출제).</div>
+    <button class="reset-btn" onclick="reset('p7q3')">↺ 다시풀기</button>
+  </div>
+
+  <div class="quiz-block" id="p7q4">
+    <div class="q-txt"><span class="q-num">4</span> 본문의 내용과 일치하지 않는 것은?</div>
+    <div class="opts">
+      <button class="opt" onclick="check('p7q4',this,false)">① 많은 고등학생들이 미래 진로에 대해 고민한다.</button>
+      <button class="opt" onclick="check('p7q4',this,false)">② 미래를 다루는 책과 영화에는 로봇이 인간 일자리를 장악하는 내용이 등장한다.</button>
+      <button class="opt" onclick="check('p7q4',this,true)">③ Dr. Kim은 18세기 기계화가 고용을 증가시켰다고 말한다.</button>
+      <button class="opt" onclick="check('p7q4',this,false)">④ Dr. Kim은 로봇이 반복적·기계적 작업 직종을 특히 대체할 것이라 예측한다.</button>
+      <button class="opt" onclick="check('p7q4',this,false)">⑤ 로봇은 현재 사람들이 하고 있는 많은 일자리를 대체할 것으로 전망된다.</button>
+    </div>
+    <div class="fb" id="p7q4-fb">💡 본문: "the introduction of machines in factories caused many people to lose their jobs" — 18세기 기계화는 일자리를 증가시킨 게 아니라 상실시켰음. ③이 불일치.</div>
+    <button class="reset-btn" onclick="reset('p7q4')">↺ 다시풀기</button>
+  </div>
+
+  <div class="quiz-block" id="p7q5">
+    <div class="q-txt"><span class="q-num">5</span> 글의 흐름으로 보아 순서가 가장 적절한 것은?<br>
+    <span style="font-size:.82rem;font-weight:400;">(A) In my view, occupations that involve repetitive and mechanical tasks in particular will be taken over by robots.<br>
+    (B) In the 18th century, the introduction of machines in factories caused many people to lose their jobs.<br>
+    (C) Likewise, I believe that robots will have a similar effect, replacing lots of the jobs that people are doing now.</span></div>
+    <div class="opts">
+      <button class="opt" onclick="check('p7q5',this,false)">① (A)-(B)-(C)</button>
+      <button class="opt" onclick="check('p7q5',this,false)">② (A)-(C)-(B)</button>
+      <button class="opt" onclick="check('p7q5',this,true)">③ (B)-(C)-(A)</button>
+      <button class="opt" onclick="check('p7q5',this,false)">④ (C)-(A)-(B)</button>
+      <button class="opt" onclick="check('p7q5',this,false)">⑤ (C)-(B)-(A)</button>
+    </div>
+    <div class="fb" id="p7q5-fb">💡 (B) 역사적 사례(18세기 기계화) → (C) 유추(로봇도 마찬가지) → (A) 결론(반복적 직종이 특히 대체됨). ③이 정답.</div>
+    <button class="reset-btn" onclick="reset('p7q5')">↺ 다시풀기</button>
+  </div>
+
+  <div class="written-block">
+    <div class="w-q">📝 [서술형 1] 빈칸에 알맞은 말을 본문에서 찾아 쓰시오. (각 한 단어)</div>
+    <div class="w-cond">조건: 본문에서 찾아 그대로 쓸 것.</div>
+    <p style="font-family:'EB Garamond',serif;font-size:15px;margin-bottom:12px;">Dr. Kim believes that robots will have a similar effect to machines in the 18th century, __________ lots of the jobs that people are doing now, especially __________ and mechanical ones.</p>
+    <textarea class="w-input" placeholder="답안을 작성하세요..."></textarea>
+    <button class="ans-btn" onclick="toggleAns(this)">모범답안 보기</button>
+    <div class="model-ans">✅ replacing / repetitive</div>
+  </div>
+
+  <div class="written-block">
+    <div class="w-q">📝 [서술형 2] Dr. Kim이 역사적 사례를 언급한 이유를 우리말로 쓰시오.</div>
+    <div class="w-cond">조건: 완전한 한국어 문장으로, 2문장 이내로 쓸 것.</div>
+    <textarea class="w-input" placeholder="답안을 작성하세요..."></textarea>
+    <button class="ans-btn" onclick="toggleAns(this)">모범답안 보기</button>
+    <div class="model-ans">✅ 18세기에 공장에 기계가 도입되어 많은 사람들이 일자리를 잃은 역사적 사례를 제시하여, 로봇도 현재의 직업들을 대체할 것이라는 자신의 주장을 뒷받침하기 위해서이다.</div>
+  </div>
+</div>
+
+</div><!-- /panel p7 -->
+
+<!-- ===== PANEL p6: 2-2/2-3 Futurist Interview (후반) ===== -->
+<div class="panel" id="p6">
+<div class="tab-bar">
+  <button class="tab-btn active" id="p6-tb1" onclick="showTab('p6','pane1',this)">① 전문</button>
+  <button class="tab-btn" id="p6-tb2" onclick="showTab('p6','pane2',this)">② 문장분석</button>
+  <button class="tab-btn" id="p6-tb3" onclick="showTab('p6','pane3',this)">③ 핵심단어</button>
+  <button class="tab-btn" id="p6-tb4" onclick="showTab('p6','pane4',this)">④ 전문해석</button>
+  <button class="tab-btn" id="p6-tb5" onclick="showTab('p6','pane5',this)">⑤ 주제·요지</button>
+  <button class="tab-btn" id="p6-tb6" onclick="showTab('p6','pane6',this)">⑥ 변형문제</button>
+</div>
+
+<!-- ① 전문 -->
+<div class="pane active" id="p6-pane1">
+  <div class="sec-badge">에듀케레 영수학원 · ERW-5</div>
+  <div class="sec-title">2-2 / 2-3 &nbsp; An Interview with a Futurist (후반)</div>
+  <div class="full-box">
+    <div class="pt">본문 2-2</div>
+    Hailey: That sounds scary! Do you mean it is inevitable that we will be losing our jobs in the future?<br><br>
+    Dr. Kim: You don't have to worry too much. People have always been able to replace the jobs that are lost because of new technology. It is important to focus on what humans are good at, such as creativity and imagination. When it comes to inventing new technologies or creating inspiring art, humans have a striking advantage over robots.<br><br>
+    Hailey: I see. Then, what will be some of the most promising jobs in the future?<br><br>
+    Dr. Kim: In my opinion, the majority of jobs that people will have in the future probably haven't even been invented yet. About ten years ago, smartphone application developers didn't exist. But now I think they're one of the hottest jobs around. And just as the invention of the smartphone has created many new jobs, further developments in technology will continue to cause big changes in the job market. This means that your future career might not exist yet either.
+  </div>
+  <div class="full-box">
+    <div class="pt">본문 2-3</div>
+    Hailey: But if that's the case, then how can we prepare for our future?<br><br>
+    Dr. Kim: No one knows exactly what skills you'll need in the future. What matters is knowing how to learn. Because the world is changing rapidly, what you learn today can quickly become outdated. However, the skills of learning will last your whole life. In addition, stay up to date on new technology. I suggest you pay attention to both the general technological trends and their effects on the industry that you are interested in.<br><br>
+    Hailey: That sounds like good advice. Is there anything you want to add?<br><br>
+    Dr. Kim: There is a famous quote that I always mention when I talk about future jobs: "There is no future in any job. The future lies in the person who holds the job." Although it is hard to forecast what our future will look like, by knowing how to learn and keeping up to date on new technology, we can always be prepared for whatever the future may hold.<br><br>
+    Hailey: Thank you for sharing this with us, Dr. Kim.
+  </div>
+</div>
+
+<!-- ② 문장분석 -->
+<div class="pane" id="p6-pane2">
+  <div class="sec-badge">에듀케레 영수학원 · ERW-5</div>
+  <div class="sec-title">② 문장분석</div>
+
+  <div class="g-group">■ 2-2 : 인간의 강점과 미래 직업</div>
+
+  <div class="s-block">
+    <div class="s-num">①</div>
+    <div class="eng-box">It is inevitable that we will be losing our jobs in the future.</div>
+    <div class="slash-eng">It is inevitable / that we will be losing our jobs / in the future.</div>
+    <div class="slash-kor">불가피한 일이다 / 우리가 미래에 일자리를 잃게 될 것이라는 것은.</div>
+    <div class="g-name">◆ 가주어 It ~ that절 (진주어)</div>
+    <div class="g-ex">▶ It is inevitable <u>that</u> — it이 가주어, that절이 진주어</div>
+    <div class="g-pt">★ It is + 형용사 + that절: inevitable / important / clear 등 수능 빈출</div>
+    <div class="g-name">◆ 미래진행 (will be + V-ing)</div>
+    <div class="g-ex">▶ will be <u>losing</u> — 미래 시점의 진행 중인 동작</div>
+    <div class="g-pt">★ will be V-ing: 미래의 예정·진행 강조; will V와 구분</div>
+  </div>
+
+  <div class="s-block">
+    <div class="s-num">②</div>
+    <div class="eng-box">People have always been able to replace the jobs that are lost because of new technology.</div>
+    <div class="slash-eng">People have always been able to replace / the jobs / that are lost / because of new technology.</div>
+    <div class="slash-kor">사람들은 항상 대체해 왔다 / 일자리들을 / 사라진 / 새로운 기술 때문에.</div>
+    <div class="g-name">◆ 현재완료 + always (지속·반복)</div>
+    <div class="g-ex">▶ have <u>always</u> been able to — 항상 그래왔다는 계속적 사실</div>
+    <div class="g-pt">★ have always + p.p.: 과거부터 현재까지 반복·지속되는 사실 강조</div>
+    <div class="g-name">◆ 주격 관계대명사 that</div>
+    <div class="g-ex">▶ the jobs <u>that</u> are lost — that이 주격 관계대명사로 앞 명사 수식</div>
+    <div class="g-pt">★ 선행사가 사물(jobs)이므로 that/which 모두 가능; that이 더 자연스러움</div>
+  </div>
+
+  <div class="s-block">
+    <div class="s-num">③</div>
+    <div class="eng-box">It is important to focus on what humans are good at, such as creativity and imagination.</div>
+    <div class="slash-eng">It is important / to focus on / what humans are good at, / such as creativity and imagination.</div>
+    <div class="slash-kor">중요한 것은 / 집중하는 것이다 / 인간이 잘하는 것에, / 창의성과 상상력 같은.</div>
+    <div class="g-name">◆ 가주어 It + to부정사 (진주어)</div>
+    <div class="g-ex">▶ It is important <u>to focus</u> — to부정사구가 진주어</div>
+    <div class="g-pt">★ It is + 형용사 + to V; 진주어 자리의 to부정사를 대신하는 형식 주어</div>
+    <div class="g-name">◆ what절 (전치사의 목적어)</div>
+    <div class="g-ex">▶ focus on <u>what humans are good at</u> — 전치사 on의 목적어인 명사절</div>
+    <div class="g-pt">★ be good at + 명사/동명사; at 뒤에 what절 전체가 목적어로 올 수 있음</div>
+  </div>
+
+  <div class="s-block">
+    <div class="s-num">④</div>
+    <div class="eng-box">When it comes to inventing new technologies or creating inspiring art, humans have a striking advantage over robots.</div>
+    <div class="slash-eng">When it comes to inventing new technologies / or creating inspiring art, / humans have a striking advantage / over robots.</div>
+    <div class="slash-kor">새로운 기술을 발명하거나 / 영감을 주는 예술을 창조하는 것에 관해서는, / 인간은 두드러진 강점을 가진다 / 로봇에 비해.</div>
+    <div class="g-name">◆ when it comes to + 동명사 (관용 표현)</div>
+    <div class="g-ex">▶ When it comes to <u>inventing</u> — '~에 관해서는'의 관용구</div>
+    <div class="g-pt">★ to는 전치사 → 반드시 명사/동명사 (to V 불가); 수능 어법 최빈출</div>
+    <div class="g-name">◆ have an advantage over (비교 표현)</div>
+    <div class="g-ex">▶ have a striking advantage <u>over</u> robots — 로봇에 비해 우위</div>
+    <div class="g-pt">★ have an advantage over = be superior to; over 뒤에 비교 대상</div>
+  </div>
+
+  <div class="s-block">
+    <div class="s-num">⑤</div>
+    <div class="eng-box">In my opinion, the majority of jobs that people will have in the future probably haven't even been invented yet.</div>
+    <div class="slash-eng">In my opinion, / the majority of jobs / that people will have in the future / probably haven't even been invented yet.</div>
+    <div class="slash-kor">내 생각에는, / 직업의 대부분이 / 사람들이 미래에 갖게 될 / 아마 아직 발명되지도 않았을 것이다.</div>
+    <div class="g-name">◆ 현재완료 수동 부정 (haven't been p.p.)</div>
+    <div class="g-ex">▶ haven't even <u>been invented</u> yet — '아직 ~되지 않았다'의 완료 수동 부정</div>
+    <div class="g-pt">★ have/has + been + p.p.: 완료 수동태; yet은 완료 부정문에서 '아직'</div>
+  </div>
+
+  <div class="s-block">
+    <div class="s-num">⑥</div>
+    <div class="eng-box">And just as the invention of the smartphone has created many new jobs, further developments in technology will continue to cause big changes in the job market.</div>
+    <div class="slash-eng">Just as the invention of the smartphone has created many new jobs, / further developments in technology / will continue to cause big changes / in the job market.</div>
+    <div class="slash-kor">스마트폰의 발명이 많은 새 일자리를 창출한 것처럼, / 기술의 추가 발전은 / 큰 변화를 계속 야기할 것이다 / 취업 시장에서.</div>
+    <div class="g-name">◆ just as … (비교·유추 접속사)</div>
+    <div class="g-ex">▶ <u>just as</u> A has created …, B will … — 'A처럼 B도'의 유추 구조</div>
+    <div class="g-pt">★ just as + 절: '~처럼, ~와 마찬가지로'; 유추 논리 전개에 핵심 표현</div>
+    <div class="g-name">◆ continue + to부정사</div>
+    <div class="g-ex">▶ will <u>continue to cause</u> — '계속 야기할 것이다'</div>
+    <div class="g-pt">★ continue + to V / V-ing: 의미 동일; 동작의 지속 표현</div>
+  </div>
+
+  <div class="g-group">■ 2-3 : 미래를 위한 준비</div>
+
+  <div class="s-block">
+    <div class="s-num">⑦</div>
+    <div class="eng-box">What matters is knowing how to learn.</div>
+    <div class="slash-eng">What matters / is knowing how to learn.</div>
+    <div class="slash-kor">중요한 것은 / 배우는 방법을 아는 것이다.</div>
+    <div class="g-name">◆ What절 주어 + be동사 + 동명사 보어</div>
+    <div class="g-ex">▶ <u>What matters</u> is <u>knowing</u> — what절이 주어, knowing이 보어</div>
+    <div class="g-pt">★ What + V + is + V-ing: 'S는 ~이다' 주어 강조 구문; 단수 취급</div>
+    <div class="g-name">◆ how to + 동사원형 (방법)</div>
+    <div class="g-ex">▶ knowing <u>how to learn</u> — '배우는 방법'의 의문사 + to부정사</div>
+    <div class="g-pt">★ 의문사 + to V: 명사구로 기능; 목적어·보어 역할</div>
+  </div>
+
+  <div class="s-block">
+    <div class="s-num">⑧</div>
+    <div class="eng-box">Because the world is changing rapidly, what you learn today can quickly become outdated.</div>
+    <div class="slash-eng">Because the world is changing rapidly, / what you learn today / can quickly become outdated.</div>
+    <div class="slash-kor">세상이 빠르게 변화하기 때문에, / 오늘 당신이 배우는 것은 / 금방 구식이 될 수 있다.</div>
+    <div class="g-name">◆ what절 주어</div>
+    <div class="g-ex">▶ <u>what you learn today</u> can quickly become — what절이 주어</div>
+    <div class="g-pt">★ what = the thing(s) that; 주어로 쓰일 때 단수 동사 취급</div>
+    <div class="g-name">◆ become + 형용사 (상태 변화)</div>
+    <div class="g-ex">▶ become <u>outdated</u> — '구식이 되다'; become + 형용사 보어</div>
+    <div class="g-pt">★ become/get/grow/turn + 형용사: 상태 변화 동사</div>
+  </div>
+
+  <div class="s-block">
+    <div class="s-num">⑨</div>
+    <div class="eng-box">I suggest you pay attention to both the general technological trends and their effects on the industry that you are interested in.</div>
+    <div class="slash-eng">I suggest / you pay attention / to both the general technological trends / and their effects on the industry / that you are interested in.</div>
+    <div class="slash-kor">나는 권한다 / 당신이 주의를 기울이기를 / 일반적인 기술 트렌드 모두와 / 당신이 관심 있는 산업에 미치는 그 영향 모두에.</div>
+    <div class="g-name">◆ suggest + (that) + 주어 + 동사원형</div>
+    <div class="g-ex">▶ suggest you <u>pay</u> attention — that절에서 should 생략, 동사원형 유지</div>
+    <div class="g-pt">★ 제안동사 suggest + that + (should) + V원형; 수능 최빈출 문법 포인트</div>
+    <div class="g-name">◆ both A and B (상관접속사)</div>
+    <div class="g-ex">▶ <u>both</u> the general trends <u>and</u> their effects — A와 B 모두</div>
+    <div class="g-pt">★ both A and B: A와 B에 문법적으로 동일한 형태 필요 (병렬구조)</div>
+  </div>
+
+  <div class="s-block">
+    <div class="s-num">⑩</div>
+    <div class="eng-box">"There is no future in any job. The future lies in the person who holds the job."</div>
+    <div class="slash-eng">"There is no future / in any job. / The future lies in the person / who holds the job."</div>
+    <div class="slash-kor">"어떤 직업에도 미래는 없다. / 미래는 그 사람에게 달려 있다 / 그 일을 맡은."</div>
+    <div class="g-name">◆ There is + 명사 (존재 구문 부정)</div>
+    <div class="g-ex">▶ There is <u>no</u> future — '~이 없다'의 존재 부정</div>
+    <div class="g-pt">★ There is/are + 주어: 존재 여부 표현; 주어 수에 동사 일치</div>
+    <div class="g-name">◆ 주격 관계대명사 who</div>
+    <div class="g-ex">▶ the person <u>who</u> holds the job — who가 선행사 person 수식</div>
+    <div class="g-pt">★ 사람 선행사 → who/that; 사물 선행사 → which/that</div>
+  </div>
+
+  <div class="s-block">
+    <div class="s-num">⑪</div>
+    <div class="eng-box">Although it is hard to forecast what our future will look like, by knowing how to learn and keeping up to date on new technology, we can always be prepared for whatever the future may hold.</div>
+    <div class="slash-eng">Although it is hard to forecast / what our future will look like, / by knowing how to learn / and keeping up to date on new technology, / we can always be prepared / for whatever the future may hold.</div>
+    <div class="slash-kor">우리의 미래가 어떤 모습일지 예측하기는 어렵지만, / 배우는 방법을 알고 / 새로운 기술에 최신 정보를 유지함으로써, / 우리는 항상 준비될 수 있다 / 미래가 가져올 무엇에든.</div>
+    <div class="g-name">◆ Although (양보 접속사)</div>
+    <div class="g-ex">▶ <u>Although</u> it is hard … — '비록 ~이지만'의 양보 부사절</div>
+    <div class="g-pt">★ Although = Even though = Though; 주절과 반대 상황 연결</div>
+    <div class="g-name">◆ by + 동명사 병렬 (수단·방법)</div>
+    <div class="g-ex">▶ by <u>knowing</u> … and <u>keeping</u> — '~함으로써'의 수단; and로 병렬</div>
+    <div class="g-pt">★ by + V-ing: 방법/수단 표현; and로 두 동명사가 by에 병렬 연결</div>
+    <div class="g-name">◆ whatever (복합관계대명사)</div>
+    <div class="g-ex">▶ for <u>whatever</u> the future may hold — '미래가 가져올 무엇이든'</div>
+    <div class="g-pt">★ whatever = anything that; 명사절로 기능하여 전치사 for의 목적어</div>
+  </div>
+</div>
+
+<!-- ③ 핵심단어 -->
+<div class="pane" id="p6-pane3">
+  <div class="sec-badge">에듀케레 영수학원 · ERW-5</div>
+  <div class="sec-title">③ 핵심단어 및 표현</div>
+  <div class="vocab-item"><span class="v-word">inevitable</span><span class="v-pos">adj.</span><span class="v-mean">불가피한</span><span class="v-deriv">inevitably (adv.), inevitability (n.)</span></div>
+  <div class="vocab-item"><span class="v-word">creativity</span><span class="v-pos">n.</span><span class="v-mean">창의성</span><span class="v-deriv">creative (adj.), create (v.)</span></div>
+  <div class="vocab-item"><span class="v-word">imagination</span><span class="v-pos">n.</span><span class="v-mean">상상력</span><span class="v-deriv">imagine (v.), imaginative (adj.)</span></div>
+  <div class="vocab-item"><span class="v-word">striking</span><span class="v-pos">adj.</span><span class="v-mean">두드러진, 놀라운</span><span class="v-deriv">strikingly (adv.), strike (v.)</span></div>
+  <div class="vocab-item"><span class="v-word">promising</span><span class="v-pos">adj.</span><span class="v-mean">유망한</span><span class="v-deriv">promise (n./v.)</span></div>
+  <div class="vocab-item"><span class="v-word">majority</span><span class="v-pos">n.</span><span class="v-mean">대다수, 대부분</span><span class="v-deriv">major (adj.), minority (반의어)</span></div>
+  <div class="vocab-item"><span class="v-word">outdated</span><span class="v-pos">adj.</span><span class="v-mean">구식의, 시대에 뒤떨어진</span><span class="v-deriv">update (v.), up-to-date (adj.)</span></div>
+  <div class="vocab-item"><span class="v-word">stay up to date</span><span class="v-pos">phr.</span><span class="v-mean">최신 정보를 유지하다</span><span class="v-deriv">—</span></div>
+  <div class="vocab-item"><span class="v-word">forecast</span><span class="v-pos">v./n.</span><span class="v-mean">예측하다 / 예측</span><span class="v-deriv">—</span></div>
+  <div class="vocab-item"><span class="v-word">when it comes to</span><span class="v-pos">phr.</span><span class="v-mean">~에 관해서는</span><span class="v-deriv">—</span></div>
+  <div class="vocab-item"><span class="v-word">advantage</span><span class="v-pos">n.</span><span class="v-mean">강점, 유리한 점</span><span class="v-deriv">advantageous (adj.), disadvantage (반의어)</span></div>
+  <div class="vocab-item"><span class="v-word">rapidly</span><span class="v-pos">adv.</span><span class="v-mean">빠르게</span><span class="v-deriv">rapid (adj.), rapidity (n.)</span></div>
+  <div class="vocab-item"><span class="v-word">matters</span><span class="v-pos">v.</span><span class="v-mean">중요하다</span><span class="v-deriv">—</span></div>
+  <div class="vocab-item"><span class="v-word">whatever</span><span class="v-pos">pron./conj.</span><span class="v-mean">무엇이든</span><span class="v-deriv">—</span></div>
+</div>
+
+<!-- ④ 전문해석 -->
+<div class="pane" id="p6-pane4">
+  <div class="sec-badge">에듀케레 영수학원 · ERW-5</div>
+  <div class="sec-title">④ 전문해석</div>
+  <div class="trans-box">
+    Hailey: 그거 무섭게 들리는데요! 미래에 우리가 일자리를 잃는 건 불가피하다는 말씀인가요?<br><br>
+    Dr. Kim: 너무 걱정하지 않아도 됩니다. 사람들은 새로운 기술로 인해 사라지는 일자리를 항상 대체해왔으니까요. 중요한 것은 창의성이나 상상력처럼 인간이 잘하는 것에 집중하는 것입니다. 새로운 기술을 발명하거나 영감을 주는 예술을 창조하는 데 있어서, 인간은 로봇에 비해 두드러진 강점을 가지고 있습니다.<br><br>
+    Hailey: 그렇군요. 그렇다면 미래에 유망한 직업에는 어떤 것들이 있을까요?<br><br>
+    Dr. Kim: 제 생각에는, 사람들이 미래에 갖게 될 직업의 대부분은 아직 발명조차 되지 않았을 것입니다. 약 10년 전만 해도 스마트폰 앱 개발자라는 직업은 존재하지 않았죠. 하지만 지금은 가장 인기 있는 직업 중 하나가 되었습니다. 스마트폰의 발명이 많은 새 일자리를 만들어낸 것처럼, 기술의 추가 발전도 취업 시장에 계속 큰 변화를 일으킬 것입니다. 이는 여러분의 미래 직업이 아직 존재하지 않을 수도 있다는 뜻입니다.<br><br>
+    Hailey: 그렇다면 어떻게 미래를 준비할 수 있을까요?<br><br>
+    Dr. Kim: 미래에 어떤 기술이 필요한지는 아무도 정확히 알 수 없습니다. 중요한 것은 배우는 방법을 아는 것입니다. 세상이 빠르게 변화하기 때문에, 오늘 배운 것도 금방 구식이 될 수 있습니다. 하지만 배우는 능력은 평생 지속됩니다. 아울러 새로운 기술에 대해 항상 최신 정보를 유지하세요. 관심 있는 산업에서의 일반적인 기술 트렌드와 그 영향 모두에 주의를 기울이기를 권합니다.<br><br>
+    Hailey: 좋은 말씀이시네요. 덧붙이실 말씀이 있으신가요?<br><br>
+    Dr. Kim: 미래 직업에 대해 이야기할 때 항상 언급하는 유명한 말이 있습니다. "어떤 직업에도 미래는 없다. 미래는 그 일을 맡은 사람에게 달려 있다." 우리의 미래가 어떤 모습일지 예측하기는 어렵지만, 배우는 방법을 알고 새로운 기술에 대한 최신 정보를 유지한다면, 미래가 무엇을 가져오든 항상 준비된 자세로 맞이할 수 있을 것입니다.<br><br>
+    Hailey: 귀중한 말씀 감사드립니다, Dr. Kim.
+  </div>
+</div>
+
+<!-- ⑤ 주제·요지 -->
+<div class="pane" id="p6-pane5">
+  <div class="sec-badge">에듀케레 영수학원 · ERW-5</div>
+  <div class="sec-title">⑤ 주제 · 요지 · 구조</div>
+  <div class="topic-card">
+    <div class="topic-label">주제</div>
+    <div class="topic-content">불확실한 미래를 대비하기 위한 핵심 역량 — 학습 능력과 기술 동향 파악</div>
+  </div>
+  <div class="topic-card">
+    <div class="topic-label">요지</div>
+    <div class="topic-content">미래 직업의 대부분은 아직 존재하지 않으므로, 특정 지식보다 '배우는 방법'을 터득하고 기술 트렌드에 주의를 기울이는 것이 가장 중요한 미래 준비 자세이다.</div>
+  </div>
+  <div class="topic-card">
+    <div class="topic-label">구조 흐름</div>
+    <div class="topic-content">
+      <div class="flow-step"><span class="flow-arrow">▶</span><span><b>전개1:</b> 인간의 강점(창의성·상상력)에 집중하면 됨 — 걱정 불필요</span></div>
+      <div class="flow-step"><span class="flow-arrow">▶</span><span><b>전개2:</b> 미래 직업 대부분 미발명; 기술 발전이 계속 새 직업 창출</span></div>
+      <div class="flow-step"><span class="flow-arrow">▶</span><span><b>전개3:</b> 준비법 ① 배우는 방법 터득 ② 기술 트렌드 파악</span></div>
+      <div class="flow-step"><span class="flow-arrow">▶</span><span><b>결론:</b> 명언 인용 — 미래는 직업이 아닌 그 사람 안에 있다</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ⑥ 변형문제 -->
+<div class="pane" id="p6-pane6">
+  <div class="sec-badge">에듀케레 영수학원 · ERW-5</div>
+  <div class="sec-title">⑥ 변형문제 · 서술형</div>
+
+  <div class="quiz-block" id="p6q1">
+    <div class="q-txt"><span class="q-num">1</span> 다음 글의 주제로 가장 적절한 것은?</div>
+    <div class="opts">
+      <button class="opt" onclick="check('p6q1',this,false)">① 스마트폰 앱 개발자의 미래 전망</button>
+      <button class="opt" onclick="check('p6q1',this,false)">② 인공지능이 창의적 직업을 대체하는 과정</button>
+      <button class="opt" onclick="check('p6q1',this,true)">③ 불확실한 미래를 대비하는 학습 능력과 기술 동향 파악의 중요성</button>
+      <button class="opt" onclick="check('p6q1',this,false)">④ 미래학자가 되기 위한 구체적인 방법</button>
+      <button class="opt" onclick="check('p6q1',this,false)">⑤ 직업 시장에서 로봇이 차지하는 비율</button>
+    </div>
+    <div class="fb" id="p6q1-fb">💡 Dr. Kim의 핵심 조언: 미래 직업은 불확실하므로 '배우는 방법'을 익히고 기술 트렌드를 파악하라. ③이 정답.</div>
+    <button class="reset-btn" onclick="reset('p6q1')">↺ 다시풀기</button>
+  </div>
+
+  <div class="quiz-block" id="p6q2">
+    <div class="q-txt"><span class="q-num">2</span> 빈칸에 들어갈 말로 가장 적절한 것은?</div>
+    <div class="q-passage">What __________ is knowing how to learn. Because the world is changing rapidly, what you learn today can quickly become outdated.</div>
+    <div class="opts">
+      <button class="opt" onclick="check('p6q2',this,false)">① you study</button>
+      <button class="opt" onclick="check('p6q2',this,false)">② technology provides</button>
+      <button class="opt" onclick="check('p6q2',this,true)">③ matters</button>
+      <button class="opt" onclick="check('p6q2',this,false)">④ we invent</button>
+      <button class="opt" onclick="check('p6q2',this,false)">⑤ robots do</button>
+    </div>
+    <div class="fb" id="p6q2-fb">💡 "What matters is knowing how to learn" — 'What + V + is + V-ing' 구조에서 주어 what절의 동사. matters(중요하다)가 정답.</div>
+    <button class="reset-btn" onclick="reset('p6q2')">↺ 다시풀기</button>
+  </div>
+
+  <div class="quiz-block" id="p6q3">
+    <div class="q-txt"><span class="q-num">3</span> 밑줄 친 ①~⑤ 중 어법상 틀린 것은?</div>
+    <div class="q-passage">When it comes to ①<u>inventing</u> new technologies, humans have a striking advantage over robots. What matters is ②<u>know</u> how to learn. I suggest you ③<u>pay</u> attention to both the general technological trends and their effects ④<u>on</u> the industry that you are interested ⑤<u>in</u>.</div>
+    <div class="opts">
+      <button class="opt" onclick="check('p6q3',this,false)">① inventing</button>
+      <button class="opt" onclick="check('p6q3',this,true)">② know → knowing</button>
+      <button class="opt" onclick="check('p6q3',this,false)">③ pay</button>
+      <button class="opt" onclick="check('p6q3',this,false)">④ on</button>
+      <button class="opt" onclick="check('p6q3',this,false)">⑤ in</button>
+    </div>
+    <div class="fb" id="p6q3-fb">💡 "What matters is ___" — be동사 뒤 보어 자리이므로 동사원형 know가 아닌 동명사 knowing이 와야 함. ②가 오답.</div>
+    <button class="reset-btn" onclick="reset('p6q3')">↺ 다시풀기</button>
+  </div>
+
+  <div class="quiz-block" id="p6q4">
+    <div class="q-txt"><span class="q-num">4</span> 본문의 내용과 일치하지 않는 것은?</div>
+    <div class="opts">
+      <button class="opt" onclick="check('p6q4',this,false)">① 창의성과 상상력에 있어 인간은 로봇보다 두드러진 강점을 갖는다.</button>
+      <button class="opt" onclick="check('p6q4',this,false)">② 미래 직업의 대부분은 아직 발명되지 않았을 것이다.</button>
+      <button class="opt" onclick="check('p6q4',this,false)">③ 스마트폰 앱 개발자는 약 10년 전에는 존재하지 않았다.</button>
+      <button class="opt" onclick="check('p6q4',this,true)">④ 오늘 배운 것은 세상의 변화와 상관없이 평생 유용하게 쓰인다.</button>
+      <button class="opt" onclick="check('p6q4',this,false)">⑤ 배우는 방법을 아는 것이 미래 준비의 핵심이다.</button>
+    </div>
+    <div class="fb" id="p6q4-fb">💡 본문: "what you learn today can quickly become outdated" — 오늘 배운 것은 금방 구식이 될 수 있다고 함. ④가 불일치.</div>
+    <button class="reset-btn" onclick="reset('p6q4')">↺ 다시풀기</button>
+  </div>
+
+  <div class="quiz-block" id="p6q5">
+    <div class="q-txt"><span class="q-num">5</span> 글의 흐름으로 보아 순서가 가장 적절한 것은?<br>
+    <span style="font-size:.82rem;font-weight:400;">(A) Although it is hard to forecast what our future will look like, by knowing how to learn and keeping up to date, we can always be prepared for whatever the future may hold.<br>
+    (B) What matters is knowing how to learn. Because the world is changing rapidly, what you learn today can quickly become outdated.<br>
+    (C) In my opinion, the majority of jobs that people will have in the future probably haven't even been invented yet.</span></div>
+    <div class="opts">
+      <button class="opt" onclick="check('p6q5',this,false)">① (A)-(B)-(C)</button>
+      <button class="opt" onclick="check('p6q5',this,false)">② (A)-(C)-(B)</button>
+      <button class="opt" onclick="check('p6q5',this,false)">③ (B)-(A)-(C)</button>
+      <button class="opt" onclick="check('p6q5',this,true)">④ (C)-(B)-(A)</button>
+      <button class="opt" onclick="check('p6q5',this,false)">⑤ (B)-(C)-(A)</button>
+    </div>
+    <div class="fb" id="p6q5-fb">💡 (C) 미래 직업 대부분 미발명 → (B) 배우는 방법이 중요 → (A) 결론: 준비된 자세로 미래 맞이. ④가 정답.</div>
+    <button class="reset-btn" onclick="reset('p6q5')">↺ 다시풀기</button>
+  </div>
+
+  <div class="written-block">
+    <div class="w-q">📝 [서술형 1] 빈칸에 알맞은 말을 본문에서 찾아 쓰시오. (각 한 단어)</div>
+    <div class="w-cond">조건: 본문에서 찾아 그대로 쓸 것.</div>
+    <p style="font-family:'EB Garamond',serif;font-size:15px;margin-bottom:12px;">What __________ is knowing how to learn, and the skills of learning will last your __________ life.</p>
+    <textarea class="w-input" placeholder="답안을 작성하세요..."></textarea>
+    <button class="ans-btn" onclick="toggleAns(this)">모범답안 보기</button>
+    <div class="model-ans">✅ matters / whole</div>
+  </div>
+
+  <div class="written-block">
+    <div class="w-q">📝 [서술형 2] Dr. Kim이 인용한 명언의 의미를 우리말로 쓰고, 이 명언이 전달하는 핵심 메시지를 한 문장으로 서술하시오.</div>
+    <div class="w-cond">조건: 명언 해석 1문장 + 핵심 메시지 1문장, 총 2문장으로 쓸 것.</div>
+    <textarea class="w-input" placeholder="답안을 작성하세요..."></textarea>
+    <button class="ans-btn" onclick="toggleAns(this)">모범답안 보기</button>
+    <div class="model-ans">✅ [해석] "어떤 직업에도 미래는 없으며, 미래는 그 일을 맡은 사람에게 달려 있다." [메시지] 중요한 것은 어떤 직업을 갖느냐가 아니라, 배우는 능력과 기술 동향에 대한 관심을 통해 끊임없이 성장하는 사람이 되는 것이다.</div>
+  </div>
+</div>
+
+</div><!-- /panel p6 -->
+
+  <div class="footer">에듀케레 영수학원 &nbsp;|&nbsp; ERW-5 분석지 &nbsp;|&nbsp; 055.363.8010 &nbsp;|&nbsp; hllee8010.github.io</div>
+</div><!-- /main -->
+
+<script>
+var curPanel = 'p1';
+
+function showPanel(id, btn) {
+  // 사이드바 버튼 active 전환
+  var sbs = document.querySelectorAll('.sb-btn');
+  for (var i = 0; i < sbs.length; i++) sbs[i].classList.remove('active');
+  if (btn) btn.classList.add('active');
+
+  // 패널 전환
+  var panels = document.querySelectorAll('.panel');
+  for (var j = 0; j < panels.length; j++) panels[j].classList.remove('active');
+  var target = document.getElementById(id);
+  if (target) target.classList.add('active');
+
+  curPanel = id;
+
+  // 탭 초기화: 첫 번째 탭(pane1)으로
+  var firstTabBtn = document.querySelector('#' + id + ' .tab-btn');
+  var panes = document.querySelectorAll('#' + id + ' .pane');
+  for (var k = 0; k < panes.length; k++) panes[k].classList.remove('active');
+  var firstPane = document.getElementById(id + '-pane1');
+  if (firstPane) firstPane.classList.add('active');
+  var tabBtns = document.querySelectorAll('#' + id + ' .tab-btn');
+  for (var l = 0; l < tabBtns.length; l++) tabBtns[l].classList.remove('active');
+  if (firstTabBtn) firstTabBtn.classList.add('active');
+}
+
+function showTab(panelId, paneId, btn) {
+  // 탭 버튼 active 전환
+  var tbns = document.querySelectorAll('#' + panelId + ' .tab-btn');
+  for (var i = 0; i < tbns.length; i++) tbns[i].classList.remove('active');
+  if (btn) btn.classList.add('active');
+
+  // 탭 패널 전환
+  var panes = document.querySelectorAll('#' + panelId + ' .pane');
+  for (var j = 0; j < panes.length; j++) panes[j].classList.remove('active');
+  var target = document.getElementById(panelId + '-' + paneId);
+  if (target) target.classList.add('active');
+}
+
+function check(qId, btn, isCorrect) {
+  var block = document.getElementById(qId);
+  if (!block) return;
+  if (btn.disabled) return;
+
+  var allOpts = block.querySelectorAll('.opt');
+  for (var i = 0; i < allOpts.length; i++) allOpts[i].disabled = true;
+
+  if (isCorrect) {
+    btn.classList.add('correct');
+  } else {
+    btn.classList.add('wrong');
+    // 정답 버튼에 correct 표시
+    for (var j = 0; j < allOpts.length; j++) {
+      var oc = allOpts[j].getAttribute('onclick') || '';
+      if (oc.indexOf(',true)') !== -1) {
+        allOpts[j].classList.add('correct');
+      }
+    }
+  }
+
+  var fb = document.getElementById(qId + '-fb');
+  if (fb) fb.classList.add('show');
+}
+
+function reset(qId) {
+  var block = document.getElementById(qId);
+  if (!block) return;
+  var allOpts = block.querySelectorAll('.opt');
+  for (var i = 0; i < allOpts.length; i++) {
+    allOpts[i].disabled = false;
+    allOpts[i].classList.remove('correct', 'wrong');
+  }
+  var fb = document.getElementById(qId + '-fb');
+  if (fb) fb.classList.remove('show');
+}
+
+function toggleAns(btn) {
+  var ans = btn.nextElementSibling;
+  if (!ans) return;
+  if (ans.classList.contains('show')) {
+    ans.classList.remove('show');
+    btn.textContent = '모범답안 보기';
+  } else {
+    ans.classList.add('show');
+    btn.textContent = '모범답안 닫기';
+  }
+}
+</script>
+</body>
+</html>
+
